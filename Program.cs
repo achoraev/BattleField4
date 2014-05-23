@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 /// <summary>
 /// vsichko e v edin class ama kvo da se pravi
 /// </summary>
 
 
 class BattleField
-{
-    
+{    
 
     //5 types of explosions
     static readonly int[,] минаЕдно = {{0,0,0,0,0},
@@ -41,24 +41,17 @@ class BattleField
 
     //
 
-
     public static void PrintField(int[,] arr, int n)
     {
         Console.Write(" ");
         for (int i = 0; i < n; i++)
         {
-
-
-
             Console.Write(" {0}", i);
         }
         Console.WriteLine();
         Console.Write("  ");
         for (int i = 0; i < n * 2; i++)
         {
-            
-            
-            
             Console.Write("-");
         }
         Console.WriteLine();
@@ -170,6 +163,7 @@ class BattleField
             }
             arr[x, y] = ProizvolniChisla.Next(1, 6);
         }
+
         PrintField(arr, n);
         int 爆 = 0;
         while (mineNumber > 0)
@@ -188,4 +182,3 @@ class BattleField
         InitiateGame();
     }
 }
-
