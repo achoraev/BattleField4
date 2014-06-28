@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D7927357-613E-4C39-88D2-2633EF4CBB37}</ProjectGuid>
+    <ProjectGuid>{80DB8CDA-46EB-4160-BE79-9A7790275303}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Game</RootNamespace>
-    <AssemblyName>Game</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <RootNamespace>GameStarter</RootNamespace>
+    <AssemblyName>GameStarter</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -39,30 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Drawing\Draw.cs" />
-    <Compile Include="GameLogic\GameEngine.cs" />
-    <Compile Include="Highscore.cs" />
-    <Compile Include="Initialisation\FieldGenerator.cs" />
-    <Compile Include="Interfaces\IScorable.cs" />
-    <Compile Include="Mine.cs" />
-    <Compile Include="Initialisation\MinesFactory.cs" />
-    <Compile Include="MineCreator.cs" />
-    <Compile Include="MineFactory.cs" />
-    <Compile Include="MineOne.cs" />
-    <Compile Include="MinePower.cs" />
-    <Compile Include="Position.cs" />
-    <Compile Include="Interfaces\IDrowable.cs" />
-    <Compile Include="Interfaces\IExplodable.cs" />
-    <Compile Include="Interfaces\IField.cs" />
-    <Compile Include="Interfaces\IInput.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserInput\ConsoleInput.cs" />
-    <Compile Include="UserInput\UserInput.cs" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram\ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

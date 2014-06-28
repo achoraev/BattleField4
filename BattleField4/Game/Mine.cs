@@ -2,11 +2,10 @@
 {
     using System;
 
-    public class Mine : IExplodable
+    public abstract class Mine : IExplodable
     {
-        public void Explode()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void Explode();
+
+        public abstract Mine CreateMine();
     }
 }

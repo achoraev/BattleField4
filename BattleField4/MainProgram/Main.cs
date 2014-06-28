@@ -7,8 +7,7 @@
     {
         static void Main()
         {
-            // call one method to start the game
-            // test commit
+            throw new ArgumentException("text");
         }
     }
 }
