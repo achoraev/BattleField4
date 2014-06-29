@@ -4,7 +4,7 @@
     using System.Collections;
 
     /// <summary>
-    /// Singleton + Facade + Strategy
+    /// Singleton + Facade
     /// </summary>
     public class Highscore
     {
