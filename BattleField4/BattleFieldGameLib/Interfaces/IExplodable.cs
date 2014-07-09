@@ -4,6 +4,6 @@
 
     public interface IExplodable
     {
-        int[,] Explode();
+        int[,] GetBlastArea();
     }
 }

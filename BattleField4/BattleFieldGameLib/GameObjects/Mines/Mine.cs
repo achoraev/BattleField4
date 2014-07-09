@@ -8,7 +8,7 @@
 
         public MinePower Power { get; set; } 
 
-        public abstract int[,] Explode();
+        public abstract int[,] GetBlastArea();
 
         public abstract void CreateMine();
 

@@ -11,7 +11,7 @@
             this.Power = MinePower.Five;
         }
 
-        public override int[,] Explode()
+        public override int[,] GetBlastArea()
         {
             return this.mineBody;
         }
