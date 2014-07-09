@@ -8,7 +8,7 @@
     /// </summary>
     public class Highscore
     {
-        private static readonly Highscore Highscore = new Highscore();
+        private static readonly Highscore Highscores = new Highscore();
 
         public void ShowHighscore()
         {
@@ -26,6 +26,8 @@
             // get lines
             // ad each line to list
             // return the list
+
+            throw new NotImplementedException();
         }
     }
 }

@@ -2,6 +2,14 @@
 {
     public class Engine
     {
+        public void StartGame()
+        {
+            IInputable consoleReader = new ConsoleInput();
+            var username = consoleReader.GetUsername();
+            User user = new User(username);
+
+            user.FieldSize = consoleReader.GetFieldSize();
+        }
         // *Intro to the game
         // *Play Music
         // User get Nickname USE ConsoleInput
