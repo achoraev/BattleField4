@@ -9,6 +9,7 @@ namespace BF4_UnitTests
         [TestMethod]
         public void TestMethod1()
         {
+
         }
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface IDrawable
     {
-        char[,] BitMap();
+        string BitMap();
     }
 }
