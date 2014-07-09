@@ -10,6 +10,6 @@
 
         public string Username { get; set; }
 
-        public int[,] LastInput { get; set; }
+        public IPosition LastInput { get; set; }
     }
 }

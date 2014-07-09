@@ -16,7 +16,7 @@
         public string BitMap()
         {
             StringBuilder bodyToDraw = new StringBuilder();
-            bodyToDraw.Append(" ");
+            bodyToDraw.Append("  ");
 
             for (int i = 0; i < this.FieldBody.GetLength(0); i++)
             {
@@ -24,13 +24,14 @@
             }
 
             bodyToDraw.AppendLine();
-            bodyToDraw.Append(" ");
-
+            bodyToDraw.Append("  ");
 
             for (int i = 0; i < this.FieldBody.GetLength(0); i++)
             {
                 bodyToDraw.Append("-");
             }
+
+            bodyToDraw.AppendLine();
 
             for (int i = 0; i < this.FieldBody.GetLength(0); i++)
             {

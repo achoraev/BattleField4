@@ -3,6 +3,11 @@
     using System;
     public class ConsoleInput : IInputable
     {
+        // izpolzvai ConsoleRenderer.DrawText() za suob6tenqta
+        // Exception na getposition pri podavane na string
+        // exception na getposition pri podavane na primerno 100, 2222 ... toest kato lipsva space
+        // gre6na logika ako pri purvoto getfieldsize dam primerno 100 posle dori da dam 10 ne raboti
+
         public int GetFieldSize()
         {
             // FIRST THING WHEN THE GAME STARTS
@@ -17,6 +22,7 @@
             }
 
             bool isValidSize = (6 < fieldSize && fieldSize < 40);
+
             while (!isValidSize)
             {
                Console.WriteLine("The field. Please try again: ");
