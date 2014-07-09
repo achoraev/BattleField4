@@ -1,20 +1,20 @@
 ﻿namespace BattleFieldGameLib
 {
-    public class ConsoleInput : UserInput
+    public class ConsoleInput : IInputable
     {
-        public override int GetFieldSize()
+        public int GetFieldSize()
         {
             throw new System.NotImplementedException();
             // FIRST THING WHEN THE GAME STARTS
         }
 
-        public override IPosition GetPositon()
+        public IPosition GetPositon()
         {
             throw new System.NotImplementedException();
             // new Position(x,y)
         }
 
-        public override string GetUsername()
+        public string GetUsername()
         {
             throw new System.NotImplementedException();
         }

@@ -47,6 +47,7 @@
     <Compile Include="GameObjects\Fields\GameField.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IDrawer.cs" />
+    <Compile Include="Interfaces\IInputable.cs" />
     <Compile Include="Plugins\Highscore.cs" />
     <Compile Include="Interfaces\IExplodable.cs" />
     <Compile Include="Interfaces\IScorable.cs" />
@@ -63,7 +64,7 @@
     <Compile Include="Interfaces\IPosition.cs" />
     <Compile Include="Renderer\ConsoleRenderer.cs" />
     <Compile Include="UserInput\ConsoleInput.cs" />
-    <Compile Include="UserInput\UserInput.cs" />
+    <Compile Include="Common\User.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
