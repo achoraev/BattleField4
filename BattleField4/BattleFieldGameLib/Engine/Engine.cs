@@ -34,7 +34,7 @@
 
             while (true)
             {
-                Console.Clear();
+                consoleDrawer.Clear();
                 ShowLastHit();
 
                 consoleDrawer.DrawObject(gameField); // Draw field USE IDrawer.DrawObject

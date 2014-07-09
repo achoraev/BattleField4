@@ -57,9 +57,9 @@
         {
             var result = new StringBuilder();
 
-            for (int i = 0; i < this.FieldBody.GetLength(0); i++)
+            for (int col = 0; col < this.FieldBody.GetLength(0); col++)
             {
-                result.Append(this.FieldBody[rowNumber, i]);
+                result.Append(this.FieldBody[rowNumber, col]);
             }
 
             return result.ToString();
