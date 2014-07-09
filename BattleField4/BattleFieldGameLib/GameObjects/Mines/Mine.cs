@@ -4,11 +4,13 @@
 
     public abstract class Mine : IExplodable
     {
-        public int[,] BlastArea { get; set; }
+        protected int[,] mineBody;
 
-        public MinePower Power { get; set; }
+        public MinePower Power { get; set; } 
 
-        public abstract void Explode();
+        public abstract int[,] Explode();
+
+        public abstract void CreateMine();
 
     }
 }

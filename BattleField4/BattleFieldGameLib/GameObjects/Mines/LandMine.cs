@@ -5,24 +5,24 @@
 
     public class LandMine : Mine
     {
-        public override void Explode()
+        public LandMine()
         {
-            throw new NotImplementedException();
+            this.CreateMine();
+            this.Power = MinePower.Two;
         }
 
-        public override Mine CreateMine()
+        public override int[,] Explode()
         {
-            /*
-               return int[,] one = 
-                {
-                    {0,0,0,0,0},
-                    {0,1,0,1,0},
-                    {0,0,1,0,0},
-                    {0,1,0,1,0},
-                    {0,0,0,0,0}
-                };
-             * */
-            throw new NotImplementedException();
+            return this.mineBody;
+        }
+
+        public override void CreateMine()
+        {
+            this.mineBody = new int[,] {{0,0,0,0,0},
+										{0,1,1,1,0},
+										{0,1,1,1,0},
+										{0,1,1,1,0},
+										{0,0,0,0,0}};
         }
     }
 }

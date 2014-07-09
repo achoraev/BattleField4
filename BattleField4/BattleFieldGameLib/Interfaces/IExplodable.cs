@@ -4,6 +4,6 @@
 
     public interface IExplodable
     {
-        void Explode();
+        int[,] Explode();
     }
 }
