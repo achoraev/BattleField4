@@ -8,7 +8,7 @@
         private IInputable consoleReader;
         private IDrawer consoleDrawer;
         private User user;
-        private IDrawable gameField;
+        private GameField gameField;
 
         public Engine()
         {
@@ -29,7 +29,7 @@
             gameField = new GameField(user.FieldSize); // Generate field matrix USE GameField
 
             // Generate mines USE MineCreator
-            // Populate field matrix USE GameField.Indexer
+            PopulateField(); // Populate field matrix USE GameField.Indexer
             // Draw ingame menu (star/stop music)
 
             while (true)
@@ -72,6 +72,7 @@
             }
         }
 
+        // TO DO: Put in gameField
         public bool IsValidPosition()
         {
             if ((0 <= this.user.LastInput.PosX && this.user.LastInput.PosX < this.user.FieldSize) &&
@@ -81,6 +82,26 @@
             }
 
             return false;
+        }
+
+        public void PopulateField()
+        {
+            int fieldSize = this.user.FieldSize;
+
+            int minesToCreate = randomNum.Next(15 * fieldSize * fieldSize / 100, 30 * fieldSize * fieldSize / 100 + 1);
+
+            for (int i = 0; i < minesToCreate; i++)
+            {
+                int x = randomNum.Next(0, fieldSize);
+                int y = randomNum.Next(0, fieldSize);
+                while (this.gameField.FieldBody[x, y] != 0)
+                {
+                    x = randomNum.Next(0, fieldSize);
+                    y = randomNum.Next(0, fieldSize);
+                }
+
+                this.gameField.FieldBody[x, y] = randomNum.Next(1, 6).ToString()[0]; // TO DO: FIX HACK
+            }
         }
     }
 }

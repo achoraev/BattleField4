@@ -35,7 +35,7 @@
 
             for (int i = 0; i < this.FieldBody.GetLength(0); i++)
             {
-                bodyToDraw.AppendLine(string.Format("{0}|{1}",i,GetRowInformation(i)));
+                bodyToDraw.AppendLine(string.Format("{0}|{1}", i, GetRowInformation(i)));
             }
 
             return bodyToDraw.ToString();
@@ -43,8 +43,14 @@
 
         public char this[int row, int col]
         {
-            get { return this.FieldBody[row, col]; }
-            set { this.FieldBody[row, col] = value; }
+            get
+            {
+                return this.FieldBody[row, col];
+            }
+            set
+            {
+                this.FieldBody[row, col] = value;
+            }
         }
 
         private string GetRowInformation(int rowNumber)
@@ -53,7 +59,7 @@
 
             for (int i = 0; i < this.FieldBody.GetLength(0); i++)
             {
-                result.Append(this.FieldBody[rowNumber,i]);
+                result.Append(this.FieldBody[rowNumber, i]);
             }
 
             return result.ToString();
