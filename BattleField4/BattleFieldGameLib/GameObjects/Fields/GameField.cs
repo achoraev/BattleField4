@@ -16,8 +16,8 @@
 
         public char this[int row, int col]
         {
-            get { /* return the specified index here */ }
-            set { /* set the specified index to value here */ }
+            get { return this.FieldBody[row, col]; }
+            set { this.FieldBody[row, col] = value; }
         }
     }
 }
