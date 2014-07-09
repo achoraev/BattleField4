@@ -22,7 +22,7 @@
             // *Play Music
 
             user = new User(consoleReader.GetUsername()); // User get Nickname USE ConsoleInput
-            user.FieldSize = consoleReader.GetFieldSize(); // User get field size USE ConsoleInput
+            user.FieldSize = consoleReader.GetFieldSize(consoleDrawer); // User get field size USE ConsoleInput
 
             // Menu 
 
@@ -40,12 +40,12 @@
                 consoleDrawer.DrawObject(gameField); // Draw field USE IDrawer.DrawObject
 
                 AskForPosition();
-                user.LastInput = consoleReader.GetPositon(); // Ask user for attack position/coordinates USE ConsoleInput
+                user.LastInput = consoleReader.GetPositon(consoleDrawer); // Ask user for attack position/coordinates USE ConsoleInput
 
                 while (!IsValidPosition())
                 {
                     AskForPosition();
-                    user.LastInput = consoleReader.GetPositon();
+                    user.LastInput = consoleReader.GetPositon(consoleDrawer);
                 }
 
                 // Hit {
