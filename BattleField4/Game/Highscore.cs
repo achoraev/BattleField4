@@ -8,7 +8,7 @@
     /// </summary>
     public class Highscore
     {
-        private static readonly Highscore Highscore = new Highscore();
+        private static readonly Highscore highscore = new Highscore();
 
         public void ShowHighscore()
         {

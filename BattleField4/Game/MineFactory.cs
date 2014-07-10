@@ -7,6 +7,6 @@ namespace Game
 {
     public abstract class MineFactory
     {
-        public abstract Mine CreteMine();
+        public abstract Mine CreateMine();
     }
 }
