@@ -30,6 +30,7 @@
             user = new User(consoleReader.GetUsername()); // User get Nickname USE ConsoleInput
             consoleDrawer.DrawText("Enter field size: ");
             user.FieldSize = consoleReader.GetFieldSize(); // User get field size USE ConsoleInput
+            user.FieldSize = consoleReader.GetFieldSize(consoleDrawer); // User get field size USE ConsoleInput
 
             // Menu 
 
@@ -50,11 +51,15 @@
 
                 user.LastInput = consoleReader.GetPositon(); // Ask user for attack position/coordinates USE ConsoleInput
                 finalScore++; // after user makes a choise finalScore++ (depends on user tries)
+                AskForPosition();
+                user.LastInput = consoleReader.GetPositon(consoleDrawer); // Ask user for attack position/coordinates USE ConsoleInput
 
                 while (!IsValidPosition()) //TODO: FIX -> cant easely see what this method needs to do it's work
                 {
                     AskForPosition();//TODO: FIX -> cant easely see what this method needs to do it's work
                     user.LastInput = consoleReader.GetPositon();
+                    AskForPosition();
+                    user.LastInput = consoleReader.GetPositon(consoleDrawer);
                 }
 
                 bool isMineHit = IsMineHit();//TODO: FIX -> cant easely see what this method needs to do it's work

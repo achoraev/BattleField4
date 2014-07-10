@@ -3,52 +3,66 @@
     using System;
     public class ConsoleInput : IInputable
     {
-        // izpolzvai ConsoleRenderer.DrawText() za suob6tenqta
-        // Exception na getposition pri podavane na string
-        // exception na getposition pri podavane na primerno 100, 2222 ... toest kato lipsva space
-        // gre6na logika ako pri purvoto getfieldsize dam primerno 100 posle dori da dam 10 ne raboti
+        private const int MinFieldSize = 6;
+        private const int MaxFieldSize = 40;
 
-        public int GetFieldSize()
+        private static int GetFieldSizeInput()
         {
-            // FIRST THING WHEN THE GAME STARTS
             var input = Console.ReadLine();
-            int fieldSize = 0;
-            bool isInteger = int.TryParse(input, out fieldSize);
+            var result = -1;
+            int.TryParse(input, out result);
 
-            while (!isInteger)
+            return result;
+        }
+
+        private static bool GetPositionInput(ref int x, ref int y)
+        {
+            var input = Console.ReadLine();
+            if (input.IndexOf(' ') == -1)
             {
-                Console.WriteLine("You must enter in integer as field size. Please try again: ");
-                GetFieldSize();
+                return false;
             }
 
-            bool isValidSize = (6 < fieldSize && fieldSize < 40);
-
-            while (!isValidSize)
+            var components = input.Split(' ');
+            if (components.Length != 2)
             {
-               Console.WriteLine("The field. Please try again: ");
-               GetFieldSize(); 
+                return false;
+            }
+
+            if (!int.TryParse(components[0], out x) || !int.TryParse(components[1], out y))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public int GetFieldSize(IDrawer drawer)
+        {
+            int fieldSize = GetFieldSizeInput();
+
+            while (fieldSize == -1 ||
+                !(MinFieldSize < fieldSize && fieldSize < MaxFieldSize))
+            {
+                drawer.DrawText("You have entered an invalid field size. Please try again: ");
+                fieldSize = GetFieldSizeInput();
             }
 
             return fieldSize;
         }
 
-        public IPosition GetPositon()
+
+        public IPosition GetPositon(IDrawer drawer)
         {
-            // new Position(x,y)
+            // Required format - "x y"
+            int x = -1;
+            int y = -1;
+            GetPositionInput(ref x, ref y);
 
-            // Input format - "x y"
-            var input = Console.ReadLine();
-            var components = input.Split(' ');
-            int x, y;
-            bool isValidX = int.TryParse(components[0], out x);
-            bool isValidY = int.TryParse(components[1], out y);
-
-            //Check if input is inside the field;
-            
-            while(!isValidX || !isValidY)
-	        {
-                Console.WriteLine("You have entered an invalid position. Please try again: ");
-                GetPositon();
+            while (x == -1 || y == -1)
+            {
+                drawer.DrawText("You have entered an invalid position. Please try again: ");
+                GetPositionInput(ref x, ref y);
             }
 
             IPosition position = new Position(x, y);
