@@ -1,28 +1,49 @@
-﻿namespace BattleFieldGameLib
+﻿using BattleFieldGameLib.Engine;
+namespace BattleFieldGameLib
 {
     using System;
+    using System.Collections.Generic;
     /// <summary>
-    /// Factory Pattern - Concrete Mine Factory
+    /// Flyweight Pattern
     /// </summary>
     public class MineCreator : MineFactory
     {
+        private Dictionary<MinePower, Mine> createdMines;
+
+        public MineCreator()
+        {
+            createdMines = new Dictionary<MinePower, Mine>();
+        }
+
         public override Mine CreateMine(MinePower power)
         {
-            switch (power)
+            Mine mineToReturn = null;
+
+            if (this.createdMines.ContainsKey(power))
             {
-                case MinePower.One:
-                    return new LimpetMine();
-                case MinePower.Two:
-                    return new LandMine();
-                case MinePower.Three:
-                    return new NavelMine();
-                case MinePower.Four:
-                    return new NuclearMine();
-                case MinePower.Five:
-                    return new FatherBomb();
-                default:
-                    throw new ArgumentException(string.Format("Mine with power: {0}, does not exists YET!", power));
+                mineToReturn = this.createdMines[power];
             }
+            else
+            {
+                switch (power)
+                {
+                    case MinePower.One:
+                        mineToReturn = new LimpetMine(); break;
+                    case MinePower.Two:
+                        mineToReturn = new LandMine(); break;
+                    case MinePower.Three:
+                        mineToReturn = new NavelMine(); break;
+                    case MinePower.Four:
+                        mineToReturn = new NuclearMine(); break;
+                    case MinePower.Five:
+                        mineToReturn = new FatherBomb(); break;
+                    default:
+                        throw new ArgumentException(string.Format("Mine with power: {0}, does not exists YET!", power));
+                }
+
+                this.createdMines.Add(power, mineToReturn);
+            }
+            return mineToReturn;
         }
     }
 }
