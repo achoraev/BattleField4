@@ -4,7 +4,7 @@ namespace BattleFieldGameLib
     using System;
     using System.Collections.Generic;
     /// <summary>
-    /// Flyweight Pattern
+    /// Flyweight design pattern
     /// </summary>
     public class MineCreator : MineFactory
     {

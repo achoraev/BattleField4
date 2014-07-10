@@ -1,7 +1,12 @@
 ﻿namespace BattleFieldGameLib
 {
     using System;
+    /// <summary>
+    /// Singleton design pattern for engine
+    /// </summary>
+    /// 
 
+    //TODO: make engine with singleton design pattern
     public class Engine
     {
         private static readonly Random randomNum = new Random();
@@ -15,7 +20,7 @@
 
         //use dependancy injection(design pattern) for private fields in the engine
         //show what the engine class uses in order to work
-        public Engine()
+        public Engine()//TODO: pass needed arguments through the constructor or with dependancy injection
         {
             consoleReader = new ConsoleInput();
             consoleDrawer = new ConsoleRenderer();
@@ -27,17 +32,16 @@
             // *Play Music
 
             consoleDrawer.DrawText("Enter user name: ");
-            user = new User(consoleReader.GetUsername()); // User get Nickname USE ConsoleInput
+            user = new User(consoleReader.GetUsername());
             consoleDrawer.DrawText("Enter field size: ");
-            user.FieldSize = consoleReader.GetFieldSize(); // User get field size USE ConsoleInput
-            user.FieldSize = consoleReader.GetFieldSize(consoleDrawer); // User get field size USE ConsoleInput
+            user.FieldSize = consoleReader.GetFieldSize();
+            user.FieldSize = consoleReader.GetFieldSize(consoleDrawer);
 
             // Menu 
 
-            gameField = new GameField(user.FieldSize); // Generate field matrix USE GameField
+            gameField = new GameField(user.FieldSize);
 
-            // Generate mines USE MineCreator
-            int minesOnFieldCount = PopulateField(); // Populate field matrix USE GameField.Indexer
+            int minesOnFieldCount = PopulateField(); 
             // Draw ingame menu (star/stop music)
 
             while (minesOnFieldCount > 0)
@@ -45,14 +49,14 @@
                 consoleDrawer.Clear();
                 ShowLastHit();//TODO: FIX -> cant easely see what this method needs to do it's work
 
-                consoleDrawer.DrawObject(gameField); // Draw field USE IDrawer.DrawObject
+                consoleDrawer.DrawObject(gameField);
 
                 AskForPosition();//TODO: FIX -> cant easely see what this method needs to do it's work
 
-                user.LastInput = consoleReader.GetPositon(); // Ask user for attack position/coordinates USE ConsoleInput
+                user.LastInput = consoleReader.GetPositon();
                 finalScore++; // after user makes a choise finalScore++ (depends on user tries)
                 AskForPosition();
-                user.LastInput = consoleReader.GetPositon(consoleDrawer); // Ask user for attack position/coordinates USE ConsoleInput
+                user.LastInput = consoleReader.GetPositon(consoleDrawer);
 
                 while (!IsValidPosition()) //TODO: FIX -> cant easely see what this method needs to do it's work
                 {
@@ -66,8 +70,8 @@
 
                 if (isMineHit)
                 {
-                    //TODO: implement strategy: explosion manager class takes different explosion strategies
-                    // needs to be something like: currentMine.Explode(); inside explosion manager
+                    //TODO: implement strategy: explosion manager class takes different explosion strategies(mine blasts)
+                    //something like: currentMine.Explode(); inside explosion manager
                     //explosionManager(currentMine, gameField);
                     //explosionManager.handleExplosion();
                     int minesTakenOut = Explode();//TODO: FIX -> cant easely see what this method needs to do it's work
@@ -78,11 +82,11 @@
             //TODO: change with highscore logic
             consoleDrawer.DrawText(string.Format("You made it with: {0} tries", finalScore));//this is only a test
 
-            // Save Highscore USE HighScore
-            // Show highscore USE HighScore
+            // *Save Highscore USE HighScore
+            // *Show highscore USE HighScore
         }
 
-        private bool IsMineHit()
+        private bool IsMineHit()//TODO: pass needed arguments to function
         {
             char fieldHit = gameField[user.LastInput.PosX, user.LastInput.PosY];
 
@@ -93,7 +97,7 @@
             return true;
         }
 
-        private int Explode()
+        private int Explode() //TODO: replace with explode manager (possible to do strategy pattern)
         {
             int mineHit = int.Parse(gameField[user.LastInput.PosX, user.LastInput.PosY].ToString());
             var fieldLength = gameField.FieldBody.GetLength(0) - 1;
@@ -151,7 +155,7 @@
             }
         }
 
-        // TO DO: Put in gameField
+        // TODO: Put in gameField
         public bool IsValidPosition()
         {
             if ((0 <= this.user.LastInput.PosX && this.user.LastInput.PosX < this.user.FieldSize) &&
@@ -163,7 +167,7 @@
             return false;
         }
 
-        public int PopulateField()
+        public int PopulateField() //TODO: pass needed arguments to function
         {
             int fieldSize = this.user.FieldSize;
 

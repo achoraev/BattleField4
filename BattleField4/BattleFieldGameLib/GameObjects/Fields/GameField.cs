@@ -11,6 +11,18 @@
             this.FieldBody = new char[fieldSize, fieldSize];
         }
 
+        public char this[int row, int col]
+        {
+            get
+            {
+                return this.FieldBody[row, col];
+            }
+            set
+            {
+                this.FieldBody[row, col] = value;
+            }
+        }
+
         public char[,] FieldBody { get; set; }
 
         public string BitMap()
@@ -39,18 +51,6 @@
             }
 
             return bodyToDraw.ToString();
-        }
-
-        public char this[int row, int col]
-        {
-            get
-            {
-                return this.FieldBody[row, col];
-            }
-            set
-            {
-                this.FieldBody[row, col] = value;
-            }
         }
 
         private string GetRowInformation(int rowNumber)
