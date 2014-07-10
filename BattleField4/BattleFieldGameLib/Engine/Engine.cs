@@ -22,8 +22,8 @@
         //show what the engine class uses in order to work
         public Engine()//TODO: pass needed arguments through the constructor or with dependancy injection
         {
-            consoleReader = new ConsoleInput();
             consoleDrawer = new ConsoleRenderer();
+            consoleReader = new ConsoleInput(consoleDrawer);
         }
 
         public void StartGame()
@@ -35,7 +35,7 @@
             user = new User(consoleReader.GetUsername());
             consoleDrawer.DrawText("Enter field size: ");
             user.FieldSize = consoleReader.GetFieldSize();
-            user.FieldSize = consoleReader.GetFieldSize(consoleDrawer);
+            //user.FieldSize = consoleReader.GetFieldSize(consoleDrawer);
 
             // Menu 
 
@@ -56,14 +56,14 @@
                 user.LastInput = consoleReader.GetPositon();
                 finalScore++; // after user makes a choise finalScore++ (depends on user tries)
                 AskForPosition();
-                user.LastInput = consoleReader.GetPositon(consoleDrawer);
+                user.LastInput = consoleReader.GetPositon();
 
                 while (!IsValidPosition()) //TODO: FIX -> cant easely see what this method needs to do it's work
                 {
                     AskForPosition();//TODO: FIX -> cant easely see what this method needs to do it's work
                     user.LastInput = consoleReader.GetPositon();
                     AskForPosition();
-                    user.LastInput = consoleReader.GetPositon(consoleDrawer);
+                    user.LastInput = consoleReader.GetPositon();
                 }
 
                 bool isMineHit = IsMineHit();//TODO: FIX -> cant easely see what this method needs to do it's work
