@@ -2,9 +2,9 @@
 {
     public interface IInputable
     {
-        int GetFieldSize(IDrawer drawer);
+        int GetFieldSize();
 
-        IPosition GetPositon(IDrawer drawer);
+        IPosition GetPositon();
 
         string GetUsername();
     }

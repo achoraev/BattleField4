@@ -6,6 +6,13 @@
         private const int MinFieldSize = 6;
         private const int MaxFieldSize = 40;
 
+        private readonly IDrawer drawer; 
+
+        public ConsoleInput(IDrawer drawer)
+        {
+            this.drawer = drawer;
+        }
+
         private static int GetFieldSizeInput()
         {
             var input = Console.ReadLine();
@@ -37,7 +44,7 @@
             return true;
         }
 
-        public int GetFieldSize(IDrawer drawer)
+        public int GetFieldSize()
         {
             int fieldSize = GetFieldSizeInput();
 
@@ -52,7 +59,7 @@
         }
 
 
-        public IPosition GetPositon(IDrawer drawer)
+        public IPosition GetPositon()
         {
             // Required format - "x y"
             int x = -1;
