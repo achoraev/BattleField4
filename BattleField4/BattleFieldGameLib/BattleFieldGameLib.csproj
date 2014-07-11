@@ -66,7 +66,11 @@
     <Compile Include="GameObjects\Fields\GameField.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IDrawer.cs" />
+    <Compile Include="Interfaces\IExplosionManager.cs" />
+    <Compile Include="Interfaces\IGameField.cs" />
     <Compile Include="Interfaces\IInputable.cs" />
+    <Compile Include="Interfaces\IMine.cs" />
+    <Compile Include="Interfaces\IMineFactory.cs" />
     <Compile Include="Plugins\Highscore.cs" />
     <Compile Include="Interfaces\IExplodable.cs" />
     <Compile Include="Interfaces\IScorable.cs" />

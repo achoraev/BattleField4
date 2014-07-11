@@ -3,7 +3,7 @@
     using System.Text;
     using BattleFieldGameLib.Interfaces;
 
-    public class GameField : IDrawable
+    public class GameField : IGameField, IDrawable
     {
         public const int FIELD_SIZE_INCREMENT = 2; // Increases matrix size by 2 for menu items
 

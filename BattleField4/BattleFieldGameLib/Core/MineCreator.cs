@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using BattleFieldGameLib.GameObjects.Mines;
     using BattleFieldGameLib.Enums;
+    using BattleFieldGameLib.Interfaces;
     /// <summary>
     /// Flyweight design pattern
     /// </summary>
@@ -16,7 +17,7 @@
             createdMines = new Dictionary<MinePower, Mine>();
         }
 
-        public override Mine CreateMine(MinePower power)
+        public override IMine CreateMine(MinePower power)
         {
             Mine mineToReturn = null;
 

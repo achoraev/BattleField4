@@ -2,11 +2,12 @@
 {
     using BattleFieldGameLib.GameObjects.Mines;
     using BattleFieldGameLib.Enums;
+    using BattleFieldGameLib.Interfaces;
     /// <summary>
     /// Factory Pattern - Base Class
     /// </summary>
-    public abstract class MineFactory
+    public abstract class MineFactory: IMineFactory
     {
-        public abstract Mine CreateMine(MinePower power);
+        public abstract IMine CreateMine(MinePower power);
     }
 }

@@ -4,9 +4,9 @@
     using BattleFieldGameLib.Interfaces;
     using BattleFieldGameLib.Enums;
 
-    public abstract class Mine : IExplodable
+    public abstract class Mine : IMine, IExplodable
     {
-        protected int[,] mineBody;
+        protected int[,] MineBody {get; set;}
 
         public MinePower Power { get; set; } 
 

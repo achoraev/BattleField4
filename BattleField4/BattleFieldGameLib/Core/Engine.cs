@@ -8,29 +8,35 @@
     using BattleFieldGameLib.Enums;
     using BattleFieldGameLib.Common;
     /// <summary>
-    /// Singleton design pattern for engine
+    /// Facade design pattern for engine
     /// </summary>
     /// 
 
     //TODO: make engine with singleton design pattern
     public class Engine
     {
+        private const int Initial_Final_Score = 0;
+
         private static readonly Random randomNum = new Random();
-        private IInputable consoleReader;
+
         private IDrawer consoleDrawer;
+        private IInputable consoleReader;
+        private IMineFactory mineFactory;
+        private IGameField gameField;
+        private IExplosionManager explostionManager;
+
         private User user;
-        private GameField gameField;
-        private MineFactory mineFactory = new MineCreator();
-        private int finalScore = 0;
-        private ExplosionManager explostionManager;
+        private int finalScore;
 
-
-        //use dependancy injection(design pattern) for private fields in the engine
-        //show what the engine class uses in order to work
-        public Engine()//TODO: pass needed arguments through the constructor or with dependancy injection
+        //the private fields declared here are always used even though the user may choose not to play
+        //the other private fields are generated on demand
+        public Engine()
         {
             consoleDrawer = new ConsoleRenderer();
             consoleReader = new ConsoleInput(consoleDrawer);
+            mineFactory = new MineCreator();
+
+            finalScore = Initial_Final_Score;
         }
 
         public void StartGame()
@@ -43,14 +49,16 @@
             user = new User(consoleReader.GetUsername());
             consoleDrawer.DrawText("Enter field size: ");
             user.FieldSize = consoleReader.GetFieldSize();
+            
+            //TODO: Menu 
 
             //INITIALIZE GAMEFIELD AND EXPLOSION MANAGER
-            //TODO: Menu 
             gameField = new GameField(user.FieldSize);
             int minesOnFieldCount = PopulateField();
-            explostionManager = new ExplosionManager(gameField);
+            explostionManager = new ExplosionManager(gameField); //dependancy injection
             
             //TODO: Draw ingame menu (star/stop music)
+
             while (minesOnFieldCount > 0)
             {
                 consoleDrawer.Clear();
@@ -76,8 +84,8 @@
                     var currentMine = mineFactory.CreateMine((MinePower)mineHit);
 
                     //configure(reconfigure) the explosion manager
-                    explostionManager.SetMine(currentMine);
-                    explostionManager.SetHitPosition(user.LastInput);
+                    explostionManager.SetMine(currentMine); //strategy
+                    explostionManager.SetHitPosition(user.LastInput); //strategy
 
                     //blow the mine up
                     int minesTakenOut = explostionManager.HandleExplosion();

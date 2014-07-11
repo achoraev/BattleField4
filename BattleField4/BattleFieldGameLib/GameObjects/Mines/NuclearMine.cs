@@ -14,12 +14,12 @@
 
         public override int[,] GetBlastArea()
         {
-            return this.mineBody;
+            return this.MineBody;
         }
 
         public override void CreateMine()
         {
-            this.mineBody = new int[,] {{0,1,1,1,0},
+            this.MineBody = new int[,] {{0,1,1,1,0},
 										{1,1,1,1,1},
 										{1,1,1,1,1},
 										{1,1,1,1,1},

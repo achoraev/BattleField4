@@ -4,17 +4,17 @@
     using BattleFieldGameLib.Interfaces;
     using BattleFieldGameLib.GameObjects.Fields;
 
-    public class ExplosionManager
+    public class ExplosionManager : IExplosionManager
     {
+        private IGameField gameField;
         private IExplodable currentMine;
         private IPosition currentPosition;
-        private GameField gameField;
 
-        public ExplosionManager(GameField gameField)
+        public ExplosionManager(IGameField gameField)
         {
-            currentMine = null;
-            currentPosition = null;
             this.gameField = gameField;
+            this.currentMine = null;
+            this.currentPosition = null;
 
         }
 
@@ -27,6 +27,7 @@
         {
             this.currentMine = mine;
         }
+
         public int HandleExplosion()
         {
 
