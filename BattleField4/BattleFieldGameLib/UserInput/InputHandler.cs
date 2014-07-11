@@ -9,6 +9,7 @@
 
         private readonly IDrawer drawer;
         private readonly IInputable inputer;
+
         public InputHandler(IDrawer drawer, IInputable inputer)
         {
             this.drawer = drawer;

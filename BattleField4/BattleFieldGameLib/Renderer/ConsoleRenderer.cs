@@ -9,12 +9,34 @@
         {
             string objectsToDraw = drawableObject.BitMap();
 
-            Console.WriteLine(objectsToDraw);
+            for (int i = 0; i < drawableObject.BitMap().Length; i++)
+            {
+                if (objectsToDraw[i] >= '0' && objectsToDraw[i] <= '9')
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                }
+                if (objectsToDraw[i] == 'X')
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                }
+                Console.Write(objectsToDraw[i]);
+                Console.ResetColor();
+            }
         }
 
         public void DrawText(string textToDraw)
         {
-            Console.WriteLine(textToDraw);
+            for (int i = 0; i < textToDraw.Length; i++)
+            {
+                if (textToDraw[i] >= '0')
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                }
+
+                Console.Write(textToDraw[i]);
+                Console.ResetColor();
+            }
+            Console.WriteLine();
         }
 
         public void Clear()
