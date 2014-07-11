@@ -7,5 +7,7 @@
         void SetMine(IExplodable mine);
 
         int HandleExplosion();
+
+        char FieldBlastRepresentation { get; set; }
     }
 }

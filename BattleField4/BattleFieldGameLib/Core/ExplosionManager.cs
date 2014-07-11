@@ -6,16 +6,21 @@
 
     public class ExplosionManager : IExplosionManager
     {
+        private const char defaultFieldBlastRepresentation = '*';
+
         private IGameField gameField;
         private IExplodable currentMine;
         private IPosition currentPosition;
 
         public ExplosionManager(IGameField gameField)
         {
+            this.FieldBlastRepresentation = defaultFieldBlastRepresentation;
             this.gameField = gameField;
             this.currentMine = null;
             this.currentPosition = null;
         }
+        
+        public char FieldBlastRepresentation { get; set; }
 
         public void SetHitPosition(IPosition position)
         {
@@ -56,13 +61,13 @@
                     {
                         // if there is a mine ... take it out
                         if ((this.gameField[rowField, colField] != 0) &&
-                            (this.gameField[rowField, colField] != '*'))
+                            (this.gameField[rowField, colField] != FieldBlastRepresentation))
                         {
                             minesTakenOut++;
                         }
 
                         // mark game field as blasted
-                        this.gameField[rowField, colField] = '*';
+                        this.gameField[rowField, colField] = FieldBlastRepresentation;
                     }
                 }
             }

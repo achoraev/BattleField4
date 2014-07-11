@@ -11,16 +11,16 @@
     /// </summary>
     public class MineCreator : MineFactory
     {
-        private Dictionary<MinePower, Mine> createdMines;
+        private Dictionary<MinePower, IMine> createdMines;
 
         public MineCreator()
         {
-            this.createdMines = new Dictionary<MinePower, Mine>();
+            this.createdMines = new Dictionary<MinePower, IMine>();
         }
 
         public override IMine CreateMine(MinePower power)
         {
-            Mine mineToReturn = null;
+            IMine mineToReturn = null;
 
             if (this.createdMines.ContainsKey(power))
             {

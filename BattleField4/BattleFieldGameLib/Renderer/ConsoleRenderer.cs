@@ -16,14 +16,14 @@
             }
         }
 
-        public void Clear()
-        {
-            Console.Clear();
-        }
-
         public void DrawText(string textToDraw)
         {
             Console.WriteLine(textToDraw);
+        }
+
+        public void Clear()
+        {
+            Console.Clear();
         }
     }
 }
