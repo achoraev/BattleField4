@@ -24,7 +24,7 @@ namespace BattleFieldGameLib.Plugins
 
             set
             {
-                this.score = Score;
+                this.score = Score; //TODO: fix recursion
             }
         }
 
@@ -37,7 +37,7 @@ namespace BattleFieldGameLib.Plugins
 
             set
             {
-                this.name = Name;
+                this.name = Name; //TODO: fix recursion
             }
         }
 
@@ -65,11 +65,11 @@ namespace BattleFieldGameLib.Plugins
 
         public void AddHighScore(IScorable newScore)
         {
-            var highScoresList = new List<HighScore>();
-            var newHighScore = new HighScore(newScore.Name, newScore.Score)
+            var highScoresList = new List<HighScore>(); //TODO: fix should be outside of method
+            var newHighScore = new HighScore(newScore.Name, newScore.Score) //TODO: fix should be outside of method
             {
-                Name = this.name,
-                Score = this.score
+                Name = this.name, // ?
+                Score = this.score // ?
             };
 
             highScoresList.Add(newHighScore);
@@ -84,9 +84,9 @@ namespace BattleFieldGameLib.Plugins
 
         //private IDictionary GetHighScore()
         //{ 
-        private static List<HighScore> ReadScoresFromFile(String path)
+        private static List<HighScore> ReadScoresFromFile(String path) // TODO: FIX: work with interfaces
         {
-            var scores = new List<HighScore>();
+            var scores = new List<HighScore>(); // TODO: FIX: declaration outside of method
 
             using (StreamReader reader = new StreamReader(path)) // path = ...//highscores.txt
             {
@@ -100,7 +100,7 @@ namespace BattleFieldGameLib.Plugins
                     }
                     catch (ArgumentException ex)
                     {
-                        Console.WriteLine("Invalid score at line \"{0}\": {1}", line, ex);
+                        Console.WriteLine("Invalid score at line \"{0}\": {1}", line, ex); // throw exception instead of console Write
                     }
                 }
             }
@@ -110,7 +110,7 @@ namespace BattleFieldGameLib.Plugins
 
         // sort method
 
-        private static List<HighScore> SortAndPositionHighscores(List<HighScore> scores)
+        private static List<HighScore> SortAndPositionHighscores(List<HighScore> scores) // work with interfaces
         {
             scores = scores.OrderByDescending(s => s.Name).ToList();
 
