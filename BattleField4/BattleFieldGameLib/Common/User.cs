@@ -8,6 +8,7 @@
         {
             this.Username = username;
         }
+
         public int FieldSize { get; set; }
 
         public string Username { get; set; }

@@ -7,17 +7,16 @@
     using BattleFieldGameLib.GameObjects.Fields;
     using BattleFieldGameLib.Enums;
     using BattleFieldGameLib.Common;
+
     /// <summary>
     /// Facade design pattern for engine
     /// </summary>
-    /// 
-
-    //TODO: make engine with singleton design pattern
+    /// TODO: make engine with singleton design pattern
     public class Engine
     {
-        private const int Initial_Final_Score = 0;
+        private const int INITIAL_SCORE = 0;
 
-        private static readonly Random randomNum = new Random();
+        private static readonly Random RandomNum = new Random();
 
         private IDrawer consoleDrawer;
         private IInputable consoleReader;
@@ -28,15 +27,15 @@
         private User user;
         private int finalScore;
 
-        //the private fields declared here are always used even though the user may choose not to play
-        //the other private fields are generated on demand
+        // the private fields declared here are always used even though the user may choose not to play
+        // the other private fields are generated on demand
         public Engine()
         {
-            consoleDrawer = new ConsoleRenderer();
-            consoleReader = new ConsoleInput(consoleDrawer);
-            mineFactory = new MineCreator();
+            this.consoleDrawer = new ConsoleRenderer();
+            this.consoleReader = new ConsoleInput(this.consoleDrawer);
+            this.mineFactory = new MineCreator();
 
-            finalScore = Initial_Final_Score;
+            this.finalScore = INITIAL_SCORE;
         }
 
         public void StartGame()
@@ -44,83 +43,82 @@
             // *Intro to the game
             // *Play Music
 
-            //GET USER INFO
-            consoleDrawer.DrawText("Enter user name: ");
-            user = new User(consoleReader.GetUsername());
-            consoleDrawer.DrawText("Enter field size: ");
-            user.FieldSize = consoleReader.GetFieldSize();
+            // GET USER INFO
+            this.consoleDrawer.DrawText("Enter user name: ");
+            this.user = new User(this.consoleReader.GetUsername());
+            this.consoleDrawer.DrawText("Enter field size: ");
+            this.user.FieldSize = this.consoleReader.GetFieldSize();
             
-            //TODO: Menu 
+            // TODO: Menu 
 
-            //INITIALIZE GAMEFIELD AND EXPLOSION MANAGER
-            gameField = new GameField(user.FieldSize);
-            int minesOnFieldCount = PopulateField();
-            explostionManager = new ExplosionManager(gameField); //dependancy injection
+            // INITIALIZE GAMEFIELD AND EXPLOSION MANAGER
+            this.gameField = new GameField(this.user.FieldSize);
+            int minesOnFieldCount = this.PopulateField();
+            this.explostionManager = new ExplosionManager(this.gameField); // dependancy injection
             
-            //TODO: Draw ingame menu (star/stop music)
+            /// TODO: Draw ingame menu (star/stop music)
 
             while (minesOnFieldCount > 0)
             {
-                consoleDrawer.Clear();
-                ShowLastHit();//TODO: FIX -> cant easely see what this method needs to do it's work
-                consoleDrawer.DrawObject(gameField);
+                this.consoleDrawer.Clear();
+                this.ShowLastHit();
+                this.consoleDrawer.DrawObject(this.gameField);
 
                 do
                 {
-                    AskForPosition();
-                    user.LastInput = consoleReader.GetPositon();
-
+                    this.AskForPosition();
+                    this.user.LastInput = this.consoleReader.GetPositon();
                 }
-                while (!IsValidPosition());//TODO: FIX -> cant easely see what this method needs to do it's work
-                finalScore++;
+                while (!this.IsValidPosition());
 
-                bool isMineHit = IsMineHit();//TODO: FIX -> cant easely see what this method needs to do it's work
+                this.finalScore++;
 
-                if (isMineHit)
+                if (this.IsMineHit())
                 {
-                    //generate mine
-                    string mineHitOnField = gameField[user.LastInput.PosX, user.LastInput.PosY].ToString();
+                    // generate mine
+                    string mineHitOnField = this.gameField[this.user.LastInput.PosX, this.user.LastInput.PosY].ToString();
                     int mineHit = int.Parse(mineHitOnField);
-                    var currentMine = mineFactory.CreateMine((MinePower)mineHit);
+                    var currentMine = this.mineFactory.CreateMine((MinePower)mineHit);
 
-                    //configure(reconfigure) the explosion manager
-                    explostionManager.SetMine(currentMine); //strategy
-                    explostionManager.SetHitPosition(user.LastInput); //strategy
+                    // configure(reconfigure) the explosion manager
+                    this.explostionManager.SetMine(currentMine);
+                    this.explostionManager.SetHitPosition(this.user.LastInput);
 
-                    //blow the mine up
-                    int minesTakenOut = explostionManager.HandleExplosion();
+                    // blow the mine up
+                    int minesTakenOut = this.explostionManager.HandleExplosion();
                     minesOnFieldCount -= minesTakenOut;
                 }
             }
 
-            //TODO: change with highscore logic Use: finalScore
-            consoleDrawer.DrawText(string.Format("You made it with: {0} tries", finalScore));//this is only a test
+            // TODO: change with highscore logic Use: finalScore
+            this.consoleDrawer.DrawText(string.Format("You made it with: {0} tries", this.finalScore));
 
             // *Save Highscore USE HighScore
             // *Show highscore USE HighScore
         }
 
-        private bool IsMineHit()//TODO: pass needed arguments to function
+        private bool IsMineHit() // TODO: pass needed arguments to function
         {
-            char fieldHit = gameField[user.LastInput.PosX, user.LastInput.PosY];
+            char fieldHit = this.gameField[this.user.LastInput.PosX, this.user.LastInput.PosY];
 
             if (fieldHit == 0 || fieldHit == '*')
             {
                 return false;
             }
+
             return true;
         }
 
         private void AskForPosition()
         {
-            consoleDrawer.DrawText("Please enter valid coordinates to hit: ");
+            this.consoleDrawer.DrawText("Please enter valid coordinates to hit: ");
         }
 
         private void ShowLastHit()
         {
             if (this.user.LastInput != null)
             {
-                consoleDrawer.DrawText(string.Format("Last hit was at: {0} - {1}", this.user.LastInput.PosX, this.user.LastInput.PosY));
+                this.consoleDrawer.DrawText(string.Format("Last hit was at: {0} - {1}", this.user.LastInput.PosX, this.user.LastInput.PosY));
             }
         }
 
@@ -136,23 +134,23 @@
             return false;
         }
 
-        public int PopulateField() //TODO: pass needed arguments to function
+        public int PopulateField() // TODO: pass needed arguments to function
         {
             int fieldSize = this.user.FieldSize;
 
-            int minesToCreate = randomNum.Next(15 * fieldSize * fieldSize / 100, 30 * fieldSize * fieldSize / 100 + 1);
+            int minesToCreate = RandomNum.Next(15 * fieldSize * fieldSize / 100, 30 * fieldSize * fieldSize / 100 + 1);
 
             for (int i = 0; i < minesToCreate; i++)
             {
-                int x = randomNum.Next(0, fieldSize);
-                int y = randomNum.Next(0, fieldSize);
+                int x = RandomNum.Next(0, fieldSize);
+                int y = RandomNum.Next(0, fieldSize);
                 while (this.gameField.FieldBody[x, y] != 0)
                 {
-                    x = randomNum.Next(0, fieldSize);
-                    y = randomNum.Next(0, fieldSize);
+                    x = RandomNum.Next(0, fieldSize);
+                    y = RandomNum.Next(0, fieldSize);
                 }
 
-                this.gameField.FieldBody[x, y] = randomNum.Next(1, 6).ToString()[0]; // TODO: FIX HACK
+                this.gameField.FieldBody[x, y] = RandomNum.Next(1, 6).ToString()[0]; // TODO: FIX HACK
             }
 
             return minesToCreate;

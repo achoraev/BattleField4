@@ -9,7 +9,7 @@
     /// </summary>
     public class Highscore
     {
-        private static readonly Highscore highScores = new Highscore();
+        private static readonly Highscore HighScores = new Highscore();
 
         public void ShowHighScore()
         {
@@ -22,11 +22,12 @@
             // if > 10 remove last
         }
 
-        private IDictionary GetHighScore() { 
-            // open file
-            // get lines
-            // ad each line to list
-            // return the list
+        private IDictionary GetHighScore() 
+        { 
+            /// open file
+            /// get lines
+            /// ad each line to list
+            /// return the list
 
             throw new NotImplementedException();
         }

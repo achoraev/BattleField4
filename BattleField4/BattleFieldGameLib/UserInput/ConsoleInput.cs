@@ -1,8 +1,8 @@
 ﻿namespace BattleFieldGameLib.UserInput
 {
     using System;
-    using BattleFieldGameLib.Interfaces;
     using BattleFieldGameLib.Common;
+    using BattleFieldGameLib.Interfaces;
 
     public class ConsoleInput : IInputable
     {
@@ -54,13 +54,12 @@
             while (fieldSize == -1 ||
                 !(MinFieldSize < fieldSize && fieldSize < MaxFieldSize))
             {
-                drawer.DrawText("You have entered an invalid field size. Please try again: ");
+                this.drawer.DrawText("You have entered an invalid field size. Please try again: ");
                 fieldSize = GetFieldSizeInput();
             }
 
             return fieldSize;
         }
-
 
         public IPosition GetPositon()
         {
@@ -71,7 +70,7 @@
 
             while (x == -1 || y == -1)
             {
-                drawer.DrawText("You have entered an invalid position. Please try again: ");
+                this.drawer.DrawText("You have entered an invalid position. Please try again: ");
                 GetPositionInput(ref x, ref y);
             }
 

@@ -5,6 +5,7 @@
     using BattleFieldGameLib.GameObjects.Mines;
     using BattleFieldGameLib.Enums;
     using BattleFieldGameLib.Interfaces;
+
     /// <summary>
     /// Flyweight design pattern
     /// </summary>
@@ -14,7 +15,7 @@
 
         public MineCreator()
         {
-            createdMines = new Dictionary<MinePower, Mine>();
+            this.createdMines = new Dictionary<MinePower, Mine>();
         }
 
         public override IMine CreateMine(MinePower power)
@@ -30,21 +31,27 @@
                 switch (power)
                 {
                     case MinePower.One:
-                        mineToReturn = new LimpetMine(); break;
+                        mineToReturn = new LimpetMine(); 
+                        break;
                     case MinePower.Two:
-                        mineToReturn = new LandMine(); break;
+                        mineToReturn = new LandMine(); 
+                        break;
                     case MinePower.Three:
-                        mineToReturn = new NavelMine(); break;
+                        mineToReturn = new NavelMine(); 
+                        break;
                     case MinePower.Four:
-                        mineToReturn = new NuclearMine(); break;
+                        mineToReturn = new NuclearMine(); 
+                        break;
                     case MinePower.Five:
-                        mineToReturn = new FatherBomb(); break;
+                        mineToReturn = new FatherBomb(); 
+                        break;
                     default:
                         throw new ArgumentException(string.Format("Mine with power: {0}, does not exists YET!", power));
                 }
 
                 this.createdMines.Add(power, mineToReturn);
             }
+
             return mineToReturn;
         }
     }

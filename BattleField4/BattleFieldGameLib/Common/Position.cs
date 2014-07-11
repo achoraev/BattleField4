@@ -13,6 +13,5 @@
         public int PosX { get; private set; }
 
         public int PosY { get; private set; }
-
     }
 }

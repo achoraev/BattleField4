@@ -12,19 +12,20 @@
             this.FieldBody = new char[fieldSize, fieldSize];
         }
 
+        public char[,] FieldBody { get; set; }
+
         public char this[int row, int col]
         {
             get
             {
                 return this.FieldBody[row, col];
             }
+
             set
             {
                 this.FieldBody[row, col] = value;
             }
         }
-
-        public char[,] FieldBody { get; set; }
 
         public string BitMap()
         {
@@ -48,7 +49,7 @@
 
             for (int i = 0; i < this.FieldBody.GetLength(0); i++)
             {
-                bodyToDraw.AppendLine(string.Format("{0}|{1}", i, GetRowInformation(i)));
+                bodyToDraw.AppendLine(string.Format("{0}|{1}", i, this.GetRowInformation(i)));
             }
 
             return bodyToDraw.ToString();
