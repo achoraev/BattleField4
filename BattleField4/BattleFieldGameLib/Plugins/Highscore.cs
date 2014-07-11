@@ -1,15 +1,62 @@
-﻿namespace BattleFieldGameLib.Plugins
+namespace BattleFieldGameLib.Plugins
 {
     using System;
-    using System.Collections;
+    using System.IO;
+    using System.Linq;
     using BattleFieldGameLib.Interfaces;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Singleton + Facade
     /// </summary>
-    public class Highscore
+    public class HighScore : IScorable
     {
-        private static readonly Highscore HighScores = new Highscore();
+        //private readonly HighScore highScoreList = new HighScore(name, score);
+        private int score;
+        private string name;
+
+        public int Score
+        {
+            get
+            {
+                return this.score;
+            }
+
+            set
+            {
+                this.score = Score;
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+
+            set
+            {
+                this.name = Name;
+            }
+        }
+
+        public HighScore(string name, int score)
+        {
+            this.Name = name;
+            this.Score = score;
+        }
+
+        // using(sr = new StreamReader("highscores.txt")
+        // this.label1.Text=sr.ReadLine();For saving the score you can do something like this:
+
+        // StreamReader sr = new StreamReader("highscores.txt");
+        // if(Convert.ToInt32(sr.ReadLine())<Convert.ToInt32(this.label1.Text)
+        // {
+        // sr.Close();
+        // using(StreamWriter sw = new StreamWriter("highscores.txt",false))
+        // sw.WriteLine(this.label1.Text);
+        // }
 
         public void ShowHighScore()
         {
@@ -18,18 +65,64 @@
 
         public void AddHighScore(IScorable newScore)
         {
+            var highScoresList = new List<HighScore>();
+            var newHighScore = new HighScore(newScore.Name, newScore.Score)
+            {
+                Name = this.name,
+                Score = this.score
+            };
+
+            highScoresList.Add(newHighScore);
+
+            using (var writer = new StreamWriter("../highscores.txt", false))
+            {
+                writer.WriteLine(newHighScore);
+            }
             // logic here
             // if > 10 remove last
         }
 
-        private IDictionary GetHighScore() 
-        { 
-            /// open file
-            /// get lines
-            /// ad each line to list
-            /// return the list
+        //private IDictionary GetHighScore()
+        //{ 
+        private static List<HighScore> ReadScoresFromFile(String path)
+        {
+            var scores = new List<HighScore>();
 
-            throw new NotImplementedException();
+            using (StreamReader reader = new StreamReader(path)) // path = ...//highscores.txt
+            {
+                String line;
+                while (!reader.EndOfStream)
+                {
+                    line = reader.ReadLine();
+                    try
+                    {
+                        scores.Add(new HighScore(line, 100));
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        Console.WriteLine("Invalid score at line \"{0}\": {1}", line, ex);
+                    }
+                }
+            }
+
+            return SortAndPositionHighscores(scores);
         }
+
+        // sort method
+
+        private static List<HighScore> SortAndPositionHighscores(List<HighScore> scores)
+        {
+            scores = scores.OrderByDescending(s => s.Name).ToList();
+
+            int pos = 1;
+
+            scores.ForEach(s => s.Score = pos++);
+
+            return scores.ToList();
+        }
+        // open file
+        // get lines
+        // ad each line to list
+        // return the list
     }
 }
