@@ -11,9 +11,10 @@
     /// <summary>
     /// Facade design pattern for engine
     /// </summary>
-    /// TODO: make engine with singleton design pattern
-    public class Engine
+    public sealed class Engine
     {
+        private static readonly Engine instance = new Engine();
+
         private const int INITIAL_SCORE = 0;
 
         private static readonly Random RandomNum = new Random();
@@ -29,13 +30,21 @@
 
         // the private fields declared here are always used even though the user may choose not to play
         // the other private fields are generated on demand
-        public Engine()
+        private Engine()
         {
             this.consoleDrawer = new ConsoleRenderer();
             this.consoleReader = new ConsoleInput(this.consoleDrawer);
             this.mineFactory = new MineCreator();
 
             this.finalScore = INITIAL_SCORE;
+        }
+
+        public static Engine GetInstance
+        {
+            get 
+            { 
+                return instance;
+            }
         }
 
         public void StartGame()

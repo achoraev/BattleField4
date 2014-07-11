@@ -6,7 +6,7 @@
     {
         public static void Main()
         {
-            var gameEngine = new Engine();
+            var gameEngine = Engine.GetInstance;
             gameEngine.StartGame();
         }
     }
