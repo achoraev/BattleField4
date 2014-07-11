@@ -7,7 +7,7 @@ namespace Game
 {
     public class MineCreator : MineFactory
     {
-        public override Mine CreteMine(Myne)
+        public override Mine CreateMine()
         {
             throw new NotImplementedException();
         }

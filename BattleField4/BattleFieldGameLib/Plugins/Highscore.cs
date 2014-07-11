@@ -8,20 +8,20 @@
     /// </summary>
     public class Highscore
     {
-        private static readonly Highscore Highscores = new Highscore();
+        private static readonly Highscore highScores = new Highscore();
 
-        public void ShowHighscore()
+        public void ShowHighScore()
         {
             // logic here
         }
 
-        public void AddHighscore(IScorable newScore)
+        public void AddHighScore(IScorable newScore)
         {
             // logic here
             // if > 10 remove last
         }
 
-        private IDictionary GetHighscore() { 
+        private IDictionary GetHighScore() { 
             // open file
             // get lines
             // ad each line to list
