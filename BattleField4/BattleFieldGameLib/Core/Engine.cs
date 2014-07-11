@@ -20,6 +20,7 @@
 
         private IDrawer consoleDrawer;
         private IInputable consoleReader;
+        private IInputable inputHandler;
         private IMineFactory mineFactory;
         private IGameField gameField;
         private IExplosionManager explostionManager;
@@ -30,7 +31,8 @@
         private Engine()
         {
             this.consoleDrawer = new ConsoleRenderer();
-            this.consoleReader = new ConsoleInput(this.consoleDrawer);
+            this.consoleReader = new ConsoleInput();
+            this.inputHandler = new InputHandler(this.consoleDrawer, this.consoleReader);
             this.mineFactory = new MineCreator();
             this.finalScore = INITIAL_SCORE;
         }
@@ -57,9 +59,9 @@
         private void GetUserInfo()
         {
             this.consoleDrawer.DrawText("Enter user name: ");
-            this.user = new User(this.consoleReader.GetUsername());
+            this.user = new User(this.inputHandler.GetUsername());
             this.consoleDrawer.DrawText("Enter field size: ");
-            this.user.FieldSize = this.consoleReader.GetFieldSize();
+            this.user.FieldSize = this.inputHandler.GetFieldSize();
         }
         private void Initialize()
         {
@@ -90,7 +92,7 @@
                 do
                 {
                     this.AskForPosition();
-                    this.user.LastInput = this.consoleReader.GetPositon();
+                    this.user.LastInput = this.inputHandler.GetPositon();
                 }
                 while (!this.IsValidPosition());
 

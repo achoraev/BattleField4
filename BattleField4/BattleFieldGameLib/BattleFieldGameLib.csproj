@@ -88,6 +88,7 @@
     <Compile Include="Renderer\ConsoleRenderer.cs" />
     <Compile Include="UserInput\ConsoleInput.cs" />
     <Compile Include="Common\User.cs" />
+    <Compile Include="UserInput\InputHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

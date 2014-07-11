@@ -4,19 +4,9 @@
     using BattleFieldGameLib.Common;
     using BattleFieldGameLib.Interfaces;
 
-    public class ConsoleInput : IInputable
+    public class ConsoleInput: IInputable
     {
-        private const int MinFieldSize = 6;
-        private const int MaxFieldSize = 40;
-
-        private readonly IDrawer drawer; 
-
-        public ConsoleInput(IDrawer drawer)
-        {
-            this.drawer = drawer;
-        }
-
-        private static int GetFieldSizeInput()
+        public int GetFieldSize()
         {
             var input = Console.ReadLine();
             var result = -1;
@@ -25,56 +15,29 @@
             return result;
         }
 
-        private static bool GetPositionInput(ref int x, ref int y)
+        public IPosition GetPositon()
         {
             var input = Console.ReadLine();
             if (input.IndexOf(' ') == -1)
             {
-                return false;
+                return null;
             }
 
             var components = input.Split(' ');
             if (components.Length != 2)
             {
-                return false;
+                return null;
             }
+
+            int x = -1;
+            int y = -1;
 
             if (!int.TryParse(components[0], out x) || !int.TryParse(components[1], out y))
             {
-                return false;
+                return null;
             }
 
-            return true;
-        }
-
-        public int GetFieldSize()
-        {
-            int fieldSize = GetFieldSizeInput();
-
-            while (fieldSize == -1 ||
-                !(MinFieldSize < fieldSize && fieldSize < MaxFieldSize))
-            {
-                this.drawer.DrawText("You have entered an invalid field size. Please try again: ");
-                fieldSize = GetFieldSizeInput();
-            }
-
-            return fieldSize;
-        }
-
-        public IPosition GetPositon()
-        {
-            // Required format - "x y"
-            int x = -1;
-            int y = -1;
-            GetPositionInput(ref x, ref y);
-
-            while (x == -1 || y == -1)
-            {
-                this.drawer.DrawText("You have entered an invalid position. Please try again: ");
-                GetPositionInput(ref x, ref y);
-            }
-
-            IPosition position = new Position(x, y);
+            var position = new Position(x, y);
             return position;
         }
 
