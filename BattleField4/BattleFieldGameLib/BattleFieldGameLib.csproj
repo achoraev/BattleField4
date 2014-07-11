@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Common\Position.cs" />
     <Compile Include="Engine\Engine.cs" />
+    <Compile Include="Engine\ExplosionManager.cs" />
     <Compile Include="Entry.cs" />
     <Compile Include="GameObjects\Fields\GameField.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />

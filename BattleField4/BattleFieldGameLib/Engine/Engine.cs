@@ -16,6 +16,7 @@
         private GameField gameField;
         private MineFactory mineFactory = new MineCreator();
         private int finalScore = 0;
+        private ExplosionManager explostionManager;
 
 
         //use dependancy injection(design pattern) for private fields in the engine
@@ -31,50 +32,49 @@
             // *Intro to the game
             // *Play Music
 
+            //GET USER INFO
             consoleDrawer.DrawText("Enter user name: ");
             user = new User(consoleReader.GetUsername());
             consoleDrawer.DrawText("Enter field size: ");
             user.FieldSize = consoleReader.GetFieldSize();
-            //user.FieldSize = consoleReader.GetFieldSize(consoleDrawer);
 
-            // Menu 
-
+            //INITIALIZE GAMEFIELD AND EXPLOSION MANAGER
+            //TODO: Menu 
             gameField = new GameField(user.FieldSize);
-
-            int minesOnFieldCount = PopulateField(); 
-            // Draw ingame menu (star/stop music)
-
+            int minesOnFieldCount = PopulateField();
+            explostionManager = new ExplosionManager(gameField);
+            
+            //TODO: Draw ingame menu (star/stop music)
             while (minesOnFieldCount > 0)
             {
                 consoleDrawer.Clear();
                 ShowLastHit();//TODO: FIX -> cant easely see what this method needs to do it's work
-
                 consoleDrawer.DrawObject(gameField);
 
-                AskForPosition();//TODO: FIX -> cant easely see what this method needs to do it's work
-
-                user.LastInput = consoleReader.GetPositon();
-                finalScore++; // after user makes a choise finalScore++ (depends on user tries)
-                AskForPosition();
-                user.LastInput = consoleReader.GetPositon();
-
-                while (!IsValidPosition()) //TODO: FIX -> cant easely see what this method needs to do it's work
+                do
                 {
-                    AskForPosition();//TODO: FIX -> cant easely see what this method needs to do it's work
-                    user.LastInput = consoleReader.GetPositon();
                     AskForPosition();
                     user.LastInput = consoleReader.GetPositon();
+
                 }
+                while (!IsValidPosition());//TODO: FIX -> cant easely see what this method needs to do it's work
+                finalScore++;
 
                 bool isMineHit = IsMineHit();//TODO: FIX -> cant easely see what this method needs to do it's work
 
                 if (isMineHit)
                 {
-                    //TODO: implement strategy: explosion manager class takes different explosion strategies(mine blasts)
-                    //something like: currentMine.Explode(); inside explosion manager
-                    //explosionManager(currentMine, gameField);
-                    //explosionManager.handleExplosion();
-                    int minesTakenOut = Explode();//TODO: FIX -> cant easely see what this method needs to do it's work
+                    //generate mine
+                    string mineHitOnField = gameField[user.LastInput.PosX, user.LastInput.PosY].ToString();
+                    int mineHit = int.Parse(mineHitOnField);
+                    var currentMine = mineFactory.CreateMine((MinePower)mineHit);
+
+                    //configure(reconfigure) the explosion manager
+                    explostionManager.SetMine(currentMine);
+                    explostionManager.SetHitPosition(user.LastInput);
+
+                    //blow the mine up
+                    int minesTakenOut = explostionManager.HandleExplosion();
                     minesOnFieldCount -= minesTakenOut;
                 }
             }
@@ -95,51 +95,6 @@
                 return false;
             }
             return true;
-        }
-
-        private int Explode() //TODO: replace with explode manager (possible to do strategy pattern)
-        {
-            int mineHit = int.Parse(gameField[user.LastInput.PosX, user.LastInput.PosY].ToString());
-            var fieldLength = gameField.FieldBody.GetLength(0) - 1;
-            var offsetX = user.LastInput.PosX - 2;
-            var offsetY = user.LastInput.PosY - 2;
-
-            //make me a mine and give me it's blast area
-            var currentMineBody = mineFactory.CreateMine((MinePower)mineHit).GetBlastArea();
-
-            int minesTakenOut = 0;
-            //walks through every field of the mines' blast area
-            for (int row = 0; row < currentMineBody.GetLength(0); row++)
-            {
-                for (int col = 0; col < currentMineBody.GetLength(1); col++)
-                {
-                    var rowField = row + offsetX;
-                    var colField = col + offsetY;
-
-                    //don't do anything if you're not in the game field
-                    if (rowField < 0 ||  fieldLength < rowField ||
-                        colField < 0 || fieldLength < colField)
-                    {
-                        continue;
-                    }
-
-                    //if the blast area covers this field
-                    if (currentMineBody[row, col] == 1)
-                    {
-                        //if there is a mine ... take it out
-                        if ((gameField[rowField, colField] != 0) &&
-                            (gameField[rowField, colField] != '*'))
-                        {
-                            minesTakenOut++;
-                        }
-
-                        //mark game field as blasted
-                        gameField[rowField, colField] = '*';
-                    }
-                }
-            }
-
-            return minesTakenOut;
         }
 
         private void AskForPosition()
