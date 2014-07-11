@@ -18,8 +18,7 @@
         {
             int fieldSize = inputer.GetFieldSize();
 
-            while (fieldSize == -1 ||
-                !(MinFieldSize < fieldSize && fieldSize < MaxFieldSize))
+            while (!(MinFieldSize < fieldSize && fieldSize < MaxFieldSize))
             {
                 this.drawer.DrawText("You have entered an invalid field size. Please try again: ");
                 fieldSize = inputer.GetFieldSize(); 

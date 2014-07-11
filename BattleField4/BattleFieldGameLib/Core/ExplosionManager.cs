@@ -6,7 +6,7 @@
 
     public class ExplosionManager : IExplosionManager
     {
-        private const char defaultFieldBlastRepresentation = '*';
+        private const char defaultFieldBlastRepresentation = 'X';
 
         private IGameField gameField;
         private IExplodable currentMine;

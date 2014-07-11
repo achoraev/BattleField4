@@ -9,11 +9,7 @@
         {
             string objectsToDraw = drawableObject.BitMap();
 
-            for (int i = 0; i < objectsToDraw.Length; i++)
-            {
-                var currentChar = objectsToDraw[i];
-                Console.Write(string.Format(" {0}", currentChar));
-            }
+            Console.WriteLine(objectsToDraw);
         }
 
         public void DrawText(string textToDraw)

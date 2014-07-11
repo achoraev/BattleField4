@@ -30,26 +30,23 @@
         public string BitMap()
         {
             StringBuilder bodyToDraw = new StringBuilder();
-            bodyToDraw.Append("  ");
+            bodyToDraw.Append("    ");
 
             for (int i = 0; i < this.FieldBody.GetLength(0); i++)
             {
-                bodyToDraw.Append(i);
+                bodyToDraw.Append(string.Format("{0}", i.ToString().PadRight(3, ' ')));
             }
 
             bodyToDraw.AppendLine();
-            bodyToDraw.Append("  ");
-
-            for (int i = 0; i < this.FieldBody.GetLength(0); i++)
-            {
-                bodyToDraw.Append("-");
-            }
+            bodyToDraw.Append("    ");
+            bodyToDraw.Append(new string('-', this.FieldBody.GetLength(0)* 3));
 
             bodyToDraw.AppendLine();
 
             for (int i = 0; i < this.FieldBody.GetLength(0); i++)
             {
-                bodyToDraw.AppendLine(string.Format("{0}|{1}", i, this.GetRowInformation(i)));
+                bodyToDraw.AppendLine(string.Format("{0}| {1}", i.ToString().PadLeft(2, ' '), this.GetRowInformation(i)));
+                bodyToDraw.AppendLine("    " + new string('-', this.FieldBody.GetLength(0)* 3));
             }
 
             return bodyToDraw.ToString();
@@ -61,7 +58,8 @@
 
             for (int col = 0; col < this.FieldBody.GetLength(0); col++)
             {
-                result.Append(this.FieldBody[rowNumber, col]);
+                result.Append(string.Format("{0}", this.FieldBody[rowNumber, col].ToString().PadRight(2, ' ')));
+                result.Append('|');
             }
 
             return result.ToString();
