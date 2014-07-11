@@ -1,5 +1,7 @@
-﻿namespace BattleFieldGameLib
+﻿namespace BattleFieldGameLib.Common
 {
+    using BattleFieldGameLib.Interfaces;
+
     public class User
     {
         public User(string username) 

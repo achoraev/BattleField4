@@ -60,8 +60,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Position.cs" />
-    <Compile Include="Engine\Engine.cs" />
-    <Compile Include="Engine\ExplosionManager.cs" />
+    <Compile Include="Core\Engine.cs" />
+    <Compile Include="Core\ExplosionManager.cs" />
     <Compile Include="Entry.cs" />
     <Compile Include="GameObjects\Fields\GameField.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
@@ -75,8 +75,8 @@
     <Compile Include="GameObjects\Mines\LimpetMine.cs" />
     <Compile Include="GameObjects\Mines\NuclearMine.cs" />
     <Compile Include="GameObjects\Mines\Mine.cs" />
-    <Compile Include="Engine\MineCreator.cs" />
-    <Compile Include="Engine\MineFactory.cs" />
+    <Compile Include="Core\MineCreator.cs" />
+    <Compile Include="Core\MineFactory.cs" />
     <Compile Include="GameObjects\Mines\LandMine.cs" />
     <Compile Include="Enums\MinePower.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

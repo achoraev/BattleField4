@@ -1,4 +1,4 @@
-﻿namespace BattleFieldGameLib
+﻿namespace BattleFieldGameLib.Interfaces
 {
     using System;
 

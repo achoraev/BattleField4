@@ -1,7 +1,8 @@
-﻿namespace BattleFieldGameLib
+﻿namespace BattleFieldGameLib.GameObjects.Mines
 {
 
     using System;
+    using BattleFieldGameLib.Enums;
 
     public class NavelMine : Mine
     {

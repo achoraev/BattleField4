@@ -1,6 +1,9 @@
-﻿namespace BattleFieldGameLib
+﻿namespace BattleFieldGameLib.UserInput
 {
     using System;
+    using BattleFieldGameLib.Interfaces;
+    using BattleFieldGameLib.Common;
+
     public class ConsoleInput : IInputable
     {
         private const int MinFieldSize = 6;

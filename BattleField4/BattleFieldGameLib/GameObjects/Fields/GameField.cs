@@ -1,6 +1,7 @@
-﻿namespace BattleFieldGameLib
+﻿namespace BattleFieldGameLib.GameObjects.Fields
 {
     using System.Text;
+    using BattleFieldGameLib.Interfaces;
 
     public class GameField : IDrawable
     {

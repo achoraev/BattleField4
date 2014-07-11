@@ -1,7 +1,8 @@
-﻿namespace BattleFieldGameLib
+﻿namespace BattleFieldGameLib.Plugins
 {
     using System;
     using System.Collections;
+    using BattleFieldGameLib.Interfaces;
 
     /// <summary>
     /// Singleton + Facade

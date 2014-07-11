@@ -1,4 +1,4 @@
-﻿namespace BattleFieldGameLib
+﻿namespace BattleFieldGameLib.Enums
 {
     public enum MinePower
     {

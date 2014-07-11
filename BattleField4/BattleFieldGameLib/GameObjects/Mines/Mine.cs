@@ -1,6 +1,8 @@
-﻿namespace BattleFieldGameLib
+﻿namespace BattleFieldGameLib.GameObjects.Mines
 {
     using System;
+    using BattleFieldGameLib.Interfaces;
+    using BattleFieldGameLib.Enums;
 
     public abstract class Mine : IExplodable
     {

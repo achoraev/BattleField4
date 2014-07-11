@@ -1,6 +1,8 @@
-﻿namespace BattleFieldGameLib
+﻿namespace BattleFieldGameLib.Renderer
 {
     using System;
+    using BattleFieldGameLib.Interfaces;
+
     public class ConsoleRenderer : IDrawer
     {
         public void DrawObject(IDrawable drawableObject)
