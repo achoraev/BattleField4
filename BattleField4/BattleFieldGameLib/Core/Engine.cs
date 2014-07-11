@@ -35,7 +35,6 @@
             this.consoleDrawer = new ConsoleRenderer();
             this.consoleReader = new ConsoleInput(this.consoleDrawer);
             this.mineFactory = new MineCreator();
-
             this.finalScore = INITIAL_SCORE;
         }
 
@@ -51,84 +50,12 @@
         {
             // *Intro to the game
             // *Play Music
-
-            // GET USER INFO
-            this.consoleDrawer.DrawText("Enter user name: ");
-            this.user = new User(this.consoleReader.GetUsername());
-            this.consoleDrawer.DrawText("Enter field size: ");
-            this.user.FieldSize = this.consoleReader.GetFieldSize();
-            
             // TODO: Menu 
-
-            // INITIALIZE GAMEFIELD AND EXPLOSION MANAGER
-            this.gameField = new GameField(this.user.FieldSize);
-            int minesOnFieldCount = this.PopulateField();
-            this.explostionManager = new ExplosionManager(this.gameField); // dependancy injection
-            
-            /// TODO: Draw ingame menu (star/stop music)
-
-            while (minesOnFieldCount > 0)
-            {
-                this.consoleDrawer.Clear();
-                this.ShowLastHit();
-                this.consoleDrawer.DrawObject(this.gameField);
-
-                do
-                {
-                    this.AskForPosition();
-                    this.user.LastInput = this.consoleReader.GetPositon();
-                }
-                while (!this.IsValidPosition());
-
-                this.finalScore++;
-
-                if (this.IsMineHit())
-                {
-                    // generate mine
-                    string mineHitOnField = this.gameField[this.user.LastInput.PosX, this.user.LastInput.PosY].ToString();
-                    int mineHit = int.Parse(mineHitOnField);
-                    var currentMine = this.mineFactory.CreateMine((MinePower)mineHit);
-
-                    // configure(reconfigure) the explosion manager
-                    this.explostionManager.SetMine(currentMine);
-                    this.explostionManager.SetHitPosition(this.user.LastInput);
-
-                    // blow the mine up
-                    int minesTakenOut = this.explostionManager.HandleExplosion();
-                    minesOnFieldCount -= minesTakenOut;
-                }
-            }
-
-            // TODO: change with highscore logic Use: finalScore
-            this.consoleDrawer.DrawText(string.Format("You made it with: {0} tries", this.finalScore));
-
-            // *Save Highscore USE HighScore
-            // *Show highscore USE HighScore
-        }
-
-        private bool IsMineHit() // TODO: pass needed arguments to function
-        {
-            char fieldHit = this.gameField[this.user.LastInput.PosX, this.user.LastInput.PosY];
-
-            if (fieldHit == 0 || fieldHit == '*')
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        private void AskForPosition()
-        {
-            this.consoleDrawer.DrawText("Please enter valid coordinates to hit: ");
-        }
-
-        private void ShowLastHit()
-        {
-            if (this.user.LastInput != null)
-            {
-                this.consoleDrawer.DrawText(string.Format("Last hit was at: {0} - {1}", this.user.LastInput.PosX, this.user.LastInput.PosY));
-            }
+            // TODO: Draw ingame menu (start/stop music)
+            GetUserInfo();
+            Initialize();
+            GameOn();
+            GameOver();
         }
 
         // TODO: Put in gameField
@@ -163,6 +90,91 @@
             }
 
             return minesToCreate;
+        }
+
+        private void GetUserInfo()
+        {
+            this.consoleDrawer.DrawText("Enter user name: ");
+            this.user = new User(this.consoleReader.GetUsername());
+            this.consoleDrawer.DrawText("Enter field size: ");
+            this.user.FieldSize = this.consoleReader.GetFieldSize();
+        }
+
+        private void Initialize()
+        {
+            // INITIALIZE GAMEFIELD AND EXPLOSION MANAGER
+            this.gameField = new GameField(this.user.FieldSize);
+            this.explostionManager = new ExplosionManager(this.gameField); // dependancy injection
+        }
+
+        private void GameOn()
+        {
+            int minesOnFieldCount = this.PopulateField();
+
+            while (minesOnFieldCount > 0)
+            {
+                this.consoleDrawer.Clear();
+                this.ShowLastHit();
+                this.consoleDrawer.DrawObject(this.gameField);
+
+                do
+                {
+                    this.AskForPosition();
+                    this.user.LastInput = this.consoleReader.GetPositon();
+                }
+                while (!this.IsValidPosition());
+
+                this.finalScore++;
+
+                if (this.IsMineHit())
+                {
+                    // generate mine
+                    string mineHitOnField = this.gameField[this.user.LastInput.PosX, this.user.LastInput.PosY].ToString();
+                    int mineHit = int.Parse(mineHitOnField);
+                    var currentMine = this.mineFactory.CreateMine((MinePower)mineHit);
+
+                    // configure(reconfigure) the explosion manager
+                    this.explostionManager.SetMine(currentMine);
+                    this.explostionManager.SetHitPosition(this.user.LastInput);
+
+                    // blow the mine up
+                    int minesTakenOut = this.explostionManager.HandleExplosion();
+                    minesOnFieldCount -= minesTakenOut;
+                }
+            }
+        }
+
+        private void GameOver()
+        { 
+            // TODO: change with highscore logic Use: finalScore
+            this.consoleDrawer.DrawText(string.Format("You made it with: {0} tries", this.finalScore));
+            // *Save Highscore USE HighScore
+            // *Show highscore USE HighScore
+        }
+
+        private bool IsMineHit() // TODO: pass needed arguments to function
+        {
+            char fieldHit = this.gameField[this.user.LastInput.PosX, this.user.LastInput.PosY];
+
+            if (fieldHit == 0 || fieldHit == '*')
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private void AskForPosition()
+        {
+            this.consoleDrawer.DrawText("Please enter valid coordinates to hit: ");
+        }
+
+        private void ShowLastHit()
+        {
+            if (this.user.LastInput != null)
+            {
+                this.consoleDrawer.DrawText(string.Format("Last hit was at: {0} - {1}", this.user.LastInput.PosX, this.user.LastInput.PosY));
+            }
         }
     }
 }
