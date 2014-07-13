@@ -14,8 +14,17 @@
             for (int i = 0; i < 10; i++)
             {                
                 var scoreForAdd = new HighScore("angel"+i, i + 50);
-                //HighScore.AddHighScore(scoreForAdd);                
+                //HighScore.AddHighScore(scoreForAdd);  
+              
+                // HINT: the test method does nothing
             }                        
+        }
+
+        [TestMethod]
+        [ExpectedException (typeof (ArgumentNullException))]
+        public void InvalidNamePassedSHouldThrowExeption()
+        {
+            var scoreForAdd = new HighScore(null, 50);
         }
     }
 }

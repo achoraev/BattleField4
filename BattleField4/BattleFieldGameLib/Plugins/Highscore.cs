@@ -24,7 +24,7 @@ namespace BattleFieldGameLib.Plugins
 
             set
             {
-                this.score = Score; //TODO: fix recursion
+                this.score = value; 
             }
         }
 
@@ -37,7 +37,14 @@ namespace BattleFieldGameLib.Plugins
 
             set
             {
-                this.name = Name; //TODO: fix recursion
+                if (value != null)
+                {
+                    this.name = value;
+                }
+                else
+                {
+                    throw new ArgumentNullException("Name can't be null value");
+                }
             }
         }
 
@@ -109,7 +116,6 @@ namespace BattleFieldGameLib.Plugins
         }
 
         // sort method
-
         private static List<HighScore> SortAndPositionHighscores(List<HighScore> scores) // work with interfaces
         {
             scores = scores.OrderByDescending(s => s.Name).ToList();
