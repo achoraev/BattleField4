@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleFieldGameLib", "BattleFieldGameLib\BattleFieldGameLib.csproj", "{7A8A0CDA-9BA6-421B-9A40-32A3B6C8CCE6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BF4UnitTests", "BF4-UnitTests\BF4UnitTests.csproj", "{E372A0DA-FB5C-4646-8670-152573404051}"

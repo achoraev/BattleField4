@@ -51,11 +51,20 @@
             // *Play Music
             // TODO: Menu 
             // TODO: Draw ingame menu (start/stop music)
-            this.GetUserInfo();
-            this.Initialize();
-            this.GameOn();
-            this.GameOver();
+            try
+            {
+                this.GetUserInfo();
+                this.Initialize();
+                this.GameOn();
+                this.GameOver();
+            }
+            catch (InvalidOperationException ex)
+            {
+                // TODO: Catch in the invoker, e.g. the Entry class, and print the errors
+                throw new InvalidOperationException(string.Format("Error starting the game! {0}"), ex);
+            }
         }
+
         private void GetUserInfo()
         {
             this.consoleDrawer.DrawText("Enter user name: ");
@@ -63,10 +72,19 @@
             this.consoleDrawer.DrawText("Enter field size: ");
             this.user.FieldSize = this.inputHandler.GetFieldSize();
         }
+
         private void Initialize()
         {
-            this.gameField = new GameField(this.user.FieldSize);
-            this.explostionManager = new ExplosionManager(this.gameField);
+            try
+            {
+                this.gameField = new GameField(this.user.FieldSize);
+                this.explostionManager = new ExplosionManager(this.gameField);
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw new InvalidOperationException(string.Format("Can't Initialize 'GameField' and 'ExplosionManager'."), ex);
+            }
+            
         }
 
         private bool IsValidPosition()
@@ -79,6 +97,7 @@
 
             return false;
         }
+
         private void GameOn()
         {
             int minesOnFieldCount = this.PopulateField();

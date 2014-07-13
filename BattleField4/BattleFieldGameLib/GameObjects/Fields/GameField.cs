@@ -60,6 +60,7 @@
             {
                 result.Append(string.Format("{0}", this.FieldBody[rowNumber, col].ToString().PadRight(2, ' ')));
                 result.Append('|');
+
             }
 
             return result.ToString();
