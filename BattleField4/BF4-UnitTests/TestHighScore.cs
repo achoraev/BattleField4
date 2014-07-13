@@ -22,7 +22,7 @@
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void InvalidNamePassedSHouldThrowExeption()
+        public void InvalidNamePassedSHouldThrowException()
         {
             var scoreForAdd = new HighScore(null, 50);
         }
