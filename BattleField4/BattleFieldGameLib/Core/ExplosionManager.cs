@@ -4,7 +4,7 @@
     using BattleFieldGameLib.Interfaces;
     using BattleFieldGameLib.GameObjects.Fields;
 
-    public class ExplosionManager : IExplosionManager
+    public class ExplosionHandler : IExplosionHandler
     {
         private const char DEFAULT_FIELD_BLAST_REPRESENTATION = 'X';
 
@@ -62,12 +62,10 @@
 
         public char FieldBlastRepresentation { get; set; }
 
-        public ExplosionManager(IGameField gameField)
+        public ExplosionHandler(IGameField gameField)
         {
             this.FieldBlastRepresentation = DEFAULT_FIELD_BLAST_REPRESENTATION;
             this.GameField = gameField;
-            //this.CurrentMine = null;    // Unnesesery, the null is deafult value
-            //this.CurrentPosition = null;    // Unnesesery, the null is deafult value
         }
 
         public void SetHitPosition(IPosition position)
@@ -110,13 +108,11 @@
                     // if the blast area covers this field
                     if (mineBody[row, col] == 1)
                     {
-                        // if there is a mine ... take it out
                         if (IsThereMineIn(rowField, colField))
                         {
                             minesTakenOut++;
                         }
 
-                        // mark game field as blasted
                         MarkFieldAsBlasted(rowField, colField);
                     }
                 }

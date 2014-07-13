@@ -1,6 +1,6 @@
 ﻿namespace BattleFieldGameLib.Interfaces
 {
-    public interface IExplosionManager
+    public interface IExplosionHandler
     {
         void SetHitPosition(IPosition position);
 

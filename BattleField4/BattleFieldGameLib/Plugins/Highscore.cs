@@ -107,7 +107,7 @@ namespace BattleFieldGameLib.Plugins
                     }
                     catch (ArgumentException ex)
                     {
-                        Console.WriteLine("Invalid score at line \"{0}\": {1}", line, ex); // throw exception instead of console Write
+                        Console.WriteLine("Invalid score at line \"{0}\": {1}", line, ex); 
                     }
                 }
             }

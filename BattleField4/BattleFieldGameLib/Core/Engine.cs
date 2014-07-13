@@ -23,7 +23,7 @@
         private IInputable inputHandler;
         private IMineFactory mineFactory;
         private IGameField gameField;
-        private IExplosionManager explostionManager;
+        private IExplosionHandler explostionManager;
 
         private User user;
         private int finalScore;
@@ -78,7 +78,7 @@
             try
             {
                 this.gameField = new GameField(this.user.FieldSize);
-                this.explostionManager = new ExplosionManager(this.gameField);
+                this.explostionManager = new ExplosionHandler(this.gameField);
             }
             catch (ArgumentNullException ex)
             {
