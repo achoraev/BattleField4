@@ -14,7 +14,7 @@
     public sealed class Engine
     {
         private const int INITIAL_SCORE = 0;
-        
+
         private static readonly Engine Instance = new Engine();
         private static readonly Random RandomNum = new Random();
 
@@ -39,8 +39,8 @@
 
         public static Engine GetInstance
         {
-            get 
-            { 
+            get
+            {
                 return Instance;
             }
         }
@@ -133,6 +133,10 @@
                     minesOnFieldCount -= minesTakenOut;
                 }
             }
+
+            this.consoleDrawer.Clear();
+            this.ShowLastHit();
+            this.consoleDrawer.DrawObject(this.gameField);
         }
 
         private int PopulateField()
@@ -156,12 +160,16 @@
 
             return minesToCreate;
         }
-        
+
         private void ShowLastHit()
         {
             if (this.user.LastInput != null)
             {
                 this.consoleDrawer.DrawText(string.Format("Last hit was at: {0} - {1}", this.user.LastInput.PosX, this.user.LastInput.PosY));
+            }
+            else
+            {
+                this.consoleDrawer.DrawText(" ");
             }
         }
 
@@ -169,7 +177,7 @@
         {
             this.consoleDrawer.DrawText("Please enter valid coordinates to hit: ");
         }
-        
+
         private bool IsMineHit()
         {
             char fieldHit = this.gameField[this.user.LastInput.PosX, this.user.LastInput.PosY];
@@ -183,7 +191,7 @@
         }
 
         private void GameOver()
-        { 
+        {
             // TODO: change with highscore logic Use: finalScore
             this.consoleDrawer.DrawText(string.Format("You made it with: {0} tries", this.finalScore));
             // *Save Highscore USE HighScore
