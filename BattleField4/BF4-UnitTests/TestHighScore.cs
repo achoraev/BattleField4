@@ -14,10 +14,16 @@
             for (int i = 0; i < 10; i++)
             {
                 var scoreForAdd = new HighScore("angel" + i, i + 50);
-                //HighScore.AddHighScore(scoreForAdd);  
-
+                //HighScore.AddHighScore();
                 // HINT: the test method does nothing
             }
+
+        }
+
+        [TestMethod]
+        public void TestGetHighScore()
+        {
+            // todo check this method
         }
 
         [TestMethod]
