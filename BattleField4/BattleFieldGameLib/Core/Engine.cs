@@ -84,10 +84,6 @@
             {
                 throw new InvalidOperationException(string.Format("Can't Initialize 'GameField' and 'ExplosionManager'."), ex);
             }
-<<<<<<< HEAD
-
-=======
->>>>>>> d59eaa079e4f1c376206adb9882dbc73a4897c03
         }
 
         private bool IsValidPosition()
