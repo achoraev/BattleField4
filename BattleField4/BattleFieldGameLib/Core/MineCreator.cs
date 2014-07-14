@@ -2,8 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using BattleFieldGameLib.GameObjects.Mines;
     using BattleFieldGameLib.Enums;
+    using BattleFieldGameLib.GameObjects.Mines;
     using BattleFieldGameLib.Interfaces;
 
     /// <summary>

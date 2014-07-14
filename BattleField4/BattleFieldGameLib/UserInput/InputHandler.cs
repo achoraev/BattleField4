@@ -2,7 +2,8 @@
 {
     using System;
     using BattleFieldGameLib.Interfaces;
-    public class InputHandler: IInputable
+
+    public class InputHandler : IInputable
     {
         private const int MinFieldSize = 6;
         private const int MaxFieldSize = 40;
@@ -15,14 +16,15 @@
             this.drawer = drawer;
             this.inputer = inputer;
         }
+
         public int GetFieldSize()
         {
-            int fieldSize = inputer.GetFieldSize();
+            int fieldSize = this.inputer.GetFieldSize();
 
             while (!(MinFieldSize < fieldSize && fieldSize < MaxFieldSize))
             {
                 this.drawer.DrawText("You have entered an invalid field size. Please try again: ");
-                fieldSize = inputer.GetFieldSize(); 
+                fieldSize = this.inputer.GetFieldSize();
             }
 
             return fieldSize;
@@ -30,11 +32,11 @@
 
         public IPosition GetPositon()
         {
-            var position = inputer.GetPositon();
+            var position = this.inputer.GetPositon();
             while (position == null)
             {
                 this.drawer.DrawText("You have entered an invalid position. Please try again: ");
-                position = inputer.GetPositon();
+                position = this.inputer.GetPositon();
             }
 
             return position;
@@ -42,7 +44,7 @@
 
         public string GetUsername()
         {
-            return inputer.GetUsername();
+            return this.inputer.GetUsername();
         }
     }
 }

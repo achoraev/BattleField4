@@ -1,11 +1,11 @@
 namespace BattleFieldGameLib.Plugins
 {
-    using BattleFieldGameLib.Interfaces;
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using BattleFieldGameLib.Interfaces;
 
     /// <summary>
     /// Singleton + Facade
@@ -69,7 +69,7 @@ namespace BattleFieldGameLib.Plugins
         {
             this.highScoresDictionary.Add(this.name, this.score);
 
-            using (var writer = new StreamWriter("..//highscores.txt", true)) // if want to delete make it true
+            using (var writer = new StreamWriter("..//highscores.txt", true))
             {
                 foreach (var item in this.highScoresDictionary)
                 {
