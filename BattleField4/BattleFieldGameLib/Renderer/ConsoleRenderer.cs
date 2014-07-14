@@ -3,8 +3,15 @@
     using System;
     using BattleFieldGameLib.Interfaces;
 
+    /// <summary>
+    /// Main class for drawing to the console. Implements IDrawer interface. Any IDrawer object will work with the program. Strategy.
+    /// </summary>
     public class ConsoleRenderer : IDrawer
     {
+        /// <summary>
+        /// Draws a given object to the console from string.
+        /// </summary>
+        /// <param name="drawableObject">Accept any instance of IDrawable.</param>
         public void DrawObject(IDrawable drawableObject)
         {
             string objectsToDraw = drawableObject.BitMap();
@@ -26,6 +33,10 @@
             }
         }
 
+        /// <summary>
+        /// Draws/writes text to the console.
+        /// </summary>
+        /// <param name="textToDraw">Accepts a string to draw/write.</param>
         public void DrawText(string textToDraw)
         {
             for (int i = 0; i < textToDraw.Length; i++)
@@ -42,6 +53,9 @@
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Clears the console.
+        /// </summary>
         public void Clear()
         {
             Console.Clear();

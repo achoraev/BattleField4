@@ -5,24 +5,26 @@
     using BattleFieldGameLib.Interfaces;
     
     /// <summary>
-    /// Mines base class. All mines inherit this class
+    /// Mines base class. All mines inherit this class.
     /// </summary>
     public abstract class Mine : IMine, IExplodable
     {
         /// <summary>
-        /// Power of the mine.
+        /// Gets or sets the power of the mine.
         /// </summary>
+        /// <value>Enumerable MinePower.</value>
         public MinePower Power { get; set; }
 
         /// <summary>
-        /// The "visualisation" of the current bomb explosion
+        /// Gets or sets the "Visualization" of the current bomb explosion.
         /// </summary>
+        /// <value>Integer matrix.</value>
         protected int[,] MineBody { get; set; }
 
         /// <summary>
         /// Returns mine body. Used method for easy extension or changes in future.
         /// </summary>
-        /// <returns>Current mine body integer matrix</returns>
+        /// <returns>Current mine body integer matrix.</returns>
         public abstract int[,] GetBlastArea();
 
         /// <summary>

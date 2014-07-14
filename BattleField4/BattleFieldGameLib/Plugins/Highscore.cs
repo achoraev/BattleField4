@@ -8,22 +8,52 @@ namespace BattleFieldGameLib.Plugins
     using BattleFieldGameLib.Interfaces;
 
     /// <summary>
-    /// Singleton + Facade
+    /// Highscore class. Saves the top 10 players in a files. Uses Singleton and Facade patterns.
     /// </summary>
     public class HighScore : IScorable
-    {        
+    {
+        /// <summary>
+        /// Current player score.
+        /// </summary>
         private int score;
+
+        /// <summary>
+        /// Current player username.
+        /// </summary>
         private string name;
-        private Dictionary<string, int> highScoresDictionary = new Dictionary<string, int>();
-        private Dictionary<string, int> sortedDictionary = new Dictionary<string, int>();
+
+        /// <summary>
+        /// A collection holding player names and scores.
+        /// </summary>
+        private Dictionary<string, int> highScoresDictionary;
+
+        /// <summary>
+        /// Sorted collection of the players and their score.
+        /// </summary>
+        private Dictionary<string, int> sortedDictionary;
+
+        /// <summary>
+        /// Current count of top players.
+        /// </summary>
         private int count = 0;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HighScore" /> class. 
+        /// </summary>
+        /// <param name="name">Player name.</param>
+        /// <param name="score">Player score.</param>
         public HighScore(string name, int score)
         {
+            this.highScoresDictionary = new Dictionary<string, int>();
+            this.sortedDictionary = new Dictionary<string, int>();
             this.Name = name;
             this.Score = score;
         }
 
+        /// <summary>
+        /// Gets or sets the current player score.
+        /// </summary>
+        /// <value>Score as integer.</value>
         public int Score
         {
             get
@@ -37,6 +67,10 @@ namespace BattleFieldGameLib.Plugins
             }
         }
 
+        /// <summary>
+        /// Gets or sets the current player username.
+        /// </summary>
+        /// <value>Name as string.</value>
         public string Name
         {
             get
@@ -57,13 +91,16 @@ namespace BattleFieldGameLib.Plugins
             }
         }
       
+        /// <summary>
+        /// Shows the high score to the UI.
+        /// </summary>
         public void ShowHighScore()
         {
             // logic here
         }
 
         /// <summary>
-        /// 
+        /// Saves the high score to a file.
         /// </summary>
         public void AddHighScore()
         {
@@ -81,10 +118,10 @@ namespace BattleFieldGameLib.Plugins
         // todo if > 10 remove last           
 
         /// <summary>
-        /// 
+        /// Gets the high score from a file.
         /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
+        /// <param name="path">Accepts the path to the file.</param>
+        /// <returns>A collection of player name and score.</returns>
         public IDictionary GetHighScore(string path)
         {            
             using (StreamReader reader = new StreamReader(path))
@@ -109,11 +146,11 @@ namespace BattleFieldGameLib.Plugins
         }
 
         /// <summary>
-        /// 
+        /// Sorts the high score collection.
         /// </summary>
-        /// <param name="scores"></param>
-        /// <returns></returns>
-        private Dictionary<string, int> SortAndPositionHighscores(Dictionary<string, int> scores) // work with interfaces
+        /// <param name="scores">Collection of players names and their score.</param>
+        /// <returns>Sorted collection by score.</returns>
+        private Dictionary<string, int> SortAndPositionHighscores(Dictionary<string, int> scores)
         {
             scores = scores.OrderByDescending(s => s.Value).ToDictionary(s => s.Key, s => s.Value);
 

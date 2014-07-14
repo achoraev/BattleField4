@@ -7,17 +7,28 @@
     using BattleFieldGameLib.Interfaces;
 
     /// <summary>
-    /// Flyweight design pattern
+    /// Flyweight and Factory design patterns for the MineCreator. Inherits MineFactory.
     /// </summary>
     public class MineCreator : MineFactory
     {
+        /// <summary>
+        /// List of all currently created mines.
+        /// </summary>
         private Dictionary<MinePower, IMine> createdMines;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MineCreator" /> class.
+        /// </summary>
         public MineCreator()
         {
             this.createdMines = new Dictionary<MinePower, IMine>();
         }
 
+        /// <summary>
+        /// Creates a mine based on the given MinePower.
+        /// </summary>
+        /// <param name="power">Accepts MinePower enumeration.</param>
+        /// <returns>Returns an instance of the IMine interface for the current mine power.</returns>
         public override IMine CreateMine(MinePower power)
         {
             IMine mineToReturn = null;

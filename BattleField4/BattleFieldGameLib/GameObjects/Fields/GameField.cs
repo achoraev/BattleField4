@@ -2,30 +2,38 @@
 {
     using System.Text;
     using BattleFieldGameLib.Interfaces;
+
     /// <summary>
-    /// Game Field Class. Holds the information about the game field and mine positions. Implements IGameField, IDrawable
+    /// Game Field Class. Holds the information about the game field and mine positions. Implements IGameField, IDrawable.
     /// </summary>
     public class GameField : IGameField, IDrawable
     {
         /// <summary>
         /// Public constant showing the additional fields needed by the game field for drawing headers.
         /// </summary>
-        public const int FIELD_SIZE_INCREMENT = 2; // Increases matrix size by 2 for menu items
+        public const int FieldSizeIncrement = 2; // Increases matrix size by 2 for menu items
 
         /// <summary>
-        /// Game Field Constructor. Creates a matrix with given size.
+        /// Initializes a new instance of the <see cref="GameField" /> class. 
         /// </summary>
-        /// <param name="fieldSize">Field size</param>
+        /// <param name="fieldSize">Field size.</param>
         public GameField(int fieldSize)
         {
             this.FieldBody = new char[fieldSize, fieldSize];
         }
 
         /// <summary>
-        /// Field body. Holds game information represented in char matrix.
+        /// Gets or sets field body. Holds game information represented in char matrix.
         /// </summary>
+        /// <value>Char Matrix.</value>
         public char[,] FieldBody { get; set; }
 
+        /// <summary>
+        /// Gets or sets a given cell in the game field matrix.
+        /// </summary>
+        /// <param name="row">Row to change.</param>
+        /// <param name="col">Column from that row to change.</param>
+        /// <returns>Char at the given position.</returns>
         public char this[int row, int col]
         {
             get
@@ -69,9 +77,9 @@
         }
 
         /// <summary>
-        /// Gets all columnhs of a specific row.
+        /// Gets all columns of a specific row.
         /// </summary>
-        /// <param name="rowNumber">Row to get information from</param>
+        /// <param name="rowNumber">Row to get information from.</param>
         /// <returns>Returns hole row information as string.</returns>
         private string GetRowInformation(int rowNumber)
         {

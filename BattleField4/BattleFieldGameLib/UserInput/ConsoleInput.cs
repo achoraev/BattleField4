@@ -4,8 +4,15 @@
     using BattleFieldGameLib.Common;
     using BattleFieldGameLib.Interfaces;
 
+    /// <summary>
+    /// Class that reads information from the console. Implements IInputable. The program will work with any instance of IInputable - Strategy.
+    /// </summary>
     public class ConsoleInput : IInputable
     {
+        /// <summary>
+        /// Gets the field size typed by the user.
+        /// </summary>
+        /// <returns>Integer containing the filed size to be created.</returns>
         public int GetFieldSize()
         {
             var input = Console.ReadLine();
@@ -15,6 +22,10 @@
             return result;
         }
 
+        /// <summary>
+        /// Gets the position to hit. Requires INT INT.
+        /// </summary>
+        /// <returns>IPosition from the given coordinates.</returns>
         public IPosition GetPositon()
         {
             var input = Console.ReadLine();
@@ -41,6 +52,10 @@
             return position;
         }
 
+        /// <summary>
+        /// Gets the player username.
+        /// </summary>
+        /// <returns>String with the users username.</returns>
         public string GetUsername()
         {
             var username = Console.ReadLine();
