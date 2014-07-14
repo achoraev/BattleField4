@@ -1,9 +1,8 @@
 ﻿namespace BF4UnitTests
 {
     using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using BattleFieldGameLib.Plugins;
-    using BattleFieldGameLib.Interfaces;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;    
 
     [TestClass]
     public class TestHighScore
@@ -11,19 +10,24 @@
         [TestMethod]
         public void TestAddHighScore()
         {
+            var scoreForAdd = new HighScore("angel", 50);
+            Assert.AreEqual(50, scoreForAdd.Score);
             for (int i = 0; i < 10; i++)
             {
-                var scoreForAdd = new HighScore("angel" + i, i * 5);
-                //HighScore.AddHighScore();
-                // HINT: the test method does nothing
+                scoreForAdd = new HighScore("angel" + i, i * 50);
+                scoreForAdd.AddHighScore();                
             }
-
+            
+            Assert.AreEqual(450, scoreForAdd.Score);
         }
 
         [TestMethod]
         public void TestGetHighScore()
         {
-            // todo check this method
+            var scoreForAdd = new HighScore("angel", 50);
+            var sortedDictionary = scoreForAdd.GetHighScore("..//highscores.txt");
+            Assert.AreEqual(50, scoreForAdd.Score);
+            Assert.AreEqual(10, sortedDictionary.Count);
         }
 
         [TestMethod]
