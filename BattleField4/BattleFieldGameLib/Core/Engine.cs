@@ -1,13 +1,13 @@
 ﻿namespace BattleFieldGameLib.Core
 {
     using System;
+    using BattleFieldGameLib.Common;
+    using BattleFieldGameLib.Enums;
+    using BattleFieldGameLib.GameObjects.Fields;
     using BattleFieldGameLib.Interfaces;
     using BattleFieldGameLib.Renderer;
     using BattleFieldGameLib.UserInput;
-    using BattleFieldGameLib.GameObjects.Fields;
-    using BattleFieldGameLib.Enums;
-    using BattleFieldGameLib.Common;
-
+    
     /// <summary>
     /// Facade, Singleton design patterns used for engine
     /// </summary>
@@ -84,7 +84,10 @@
             {
                 throw new InvalidOperationException(string.Format("Can't Initialize 'GameField' and 'ExplosionManager'."), ex);
             }
+<<<<<<< HEAD
 
+=======
+>>>>>>> d59eaa079e4f1c376206adb9882dbc73a4897c03
         }
 
         private bool IsValidPosition()
@@ -183,7 +186,7 @@
         {
             char fieldHit = this.gameField[this.user.LastInput.PosX, this.user.LastInput.PosY];
 
-            if (fieldHit == 0 || fieldHit == explostionManager.FieldBlastRepresentation)
+            if (fieldHit == 0 || fieldHit == this.explostionManager.FieldBlastRepresentation)
             {
                 return false;
             }

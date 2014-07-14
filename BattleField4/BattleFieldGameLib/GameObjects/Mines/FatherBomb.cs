@@ -18,7 +18,7 @@
 
         public override void CreateMine()
         {
-            this.MineBody = new int[,] 
+            this.MineBody = new int[,]
             {
                 { 1, 1, 1, 1, 1 },
                 { 1, 1, 1, 1, 1 },

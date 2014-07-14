@@ -1,8 +1,8 @@
 ﻿namespace BattleFieldGameLib.Core
 {
     using System;
-    using BattleFieldGameLib.Interfaces;
     using BattleFieldGameLib.GameObjects.Fields;
+    using BattleFieldGameLib.Interfaces;
 
     public class ExplosionHandler : IExplosionHandler
     {
@@ -12,9 +12,21 @@
         private IExplodable currentMine;
         private IPosition currentPosition;
 
+        public ExplosionHandler(IGameField gameField)
+        {
+            this.FieldBlastRepresentation = DEFAULT_FIELD_BLAST_REPRESENTATION;
+            this.GameField = gameField;
+        }
+
+        public char FieldBlastRepresentation { get; set; }
+
         private IExplodable CurrentMine
         {
-            get { return this.currentMine; }
+            get
+            {
+                return this.currentMine;
+            }
+
             set
             {
                 if (value != null)
@@ -30,7 +42,11 @@
 
         private IPosition CurrentPosition
         {
-            get { return this.currentPosition; }
+            get
+            {
+                return this.currentPosition;
+            }
+
             set
             {
                 if (value != null)
@@ -46,7 +62,11 @@
 
         private IGameField GameField
         {
-            get { return this.gameField; }
+            get
+            {
+                return this.gameField;
+            }
+
             set
             {
                 if (value != null)
@@ -58,14 +78,6 @@
                     throw new ArgumentNullException("Invalid parameter, null passed as a 'GameField'");
                 }
             }
-        }
-
-        public char FieldBlastRepresentation { get; set; }
-
-        public ExplosionHandler(IGameField gameField)
-        {
-            this.FieldBlastRepresentation = DEFAULT_FIELD_BLAST_REPRESENTATION;
-            this.GameField = gameField;
         }
 
         public void SetHitPosition(IPosition position)
@@ -108,12 +120,12 @@
                     // if the blast area covers this field
                     if (mineBody[row, col] == 1)
                     {
-                        if (IsThereMineIn(rowField, colField))
+                        if (this.IsThereMineIn(rowField, colField))
                         {
                             minesTakenOut++;
                         }
 
-                        MarkFieldAsBlasted(rowField, colField);
+                        this.MarkFieldAsBlasted(rowField, colField);
                     }
                 }
             }
@@ -123,12 +135,12 @@
 
         private void MarkFieldAsBlasted(int row, int col)
         {
-            this.GameField[row, col] = FieldBlastRepresentation;
+            this.GameField[row, col] = this.FieldBlastRepresentation;
         }
 
         private bool IsThereMineIn(int row, int col)
         {
-            if ((this.gameField[row, col] != 0) && (this.gameField[row, col] != FieldBlastRepresentation))
+            if ((this.gameField[row, col] != 0) && (this.gameField[row, col] != this.FieldBlastRepresentation))
             {
                 return true;
             }

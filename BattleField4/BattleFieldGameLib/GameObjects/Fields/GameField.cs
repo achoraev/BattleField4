@@ -39,14 +39,14 @@
 
             bodyToDraw.AppendLine();
             bodyToDraw.Append("    ");
-            bodyToDraw.Append(new string('-', this.FieldBody.GetLength(0)* 3));
+            bodyToDraw.Append(new string('-', this.FieldBody.GetLength(0) * 3));
 
             bodyToDraw.AppendLine();
 
             for (int i = 0; i < this.FieldBody.GetLength(0); i++)
             {
                 bodyToDraw.AppendLine(string.Format("{0}| {1}", i.ToString().PadLeft(2, ' '), this.GetRowInformation(i)));
-                bodyToDraw.AppendLine("    " + new string('-', this.FieldBody.GetLength(0)* 3));
+                bodyToDraw.AppendLine("    " + new string('-', this.FieldBody.GetLength(0) * 3));
             }
 
             return bodyToDraw.ToString();
@@ -60,7 +60,6 @@
             {
                 result.Append(string.Format("{0}", this.FieldBody[rowNumber, col].ToString().PadRight(2, ' ')));
                 result.Append('|');
-
             }
 
             return result.ToString();

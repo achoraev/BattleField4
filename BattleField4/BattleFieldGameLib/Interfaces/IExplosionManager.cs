@@ -2,12 +2,12 @@
 {
     public interface IExplosionHandler
     {
+        char FieldBlastRepresentation { get; set; }
+
         void SetHitPosition(IPosition position);
 
         void SetMine(IExplodable mine);
 
         int HandleExplosion();
-
-        char FieldBlastRepresentation { get; set; }
     }
 }

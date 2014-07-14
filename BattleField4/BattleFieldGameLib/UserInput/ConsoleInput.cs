@@ -4,7 +4,7 @@
     using BattleFieldGameLib.Common;
     using BattleFieldGameLib.Interfaces;
 
-    public class ConsoleInput: IInputable
+    public class ConsoleInput : IInputable
     {
         public int GetFieldSize()
         {

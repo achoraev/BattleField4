@@ -1,7 +1,7 @@
 ﻿namespace BattleFieldGameLib.Core
 {
-    using BattleFieldGameLib.GameObjects.Mines;
     using BattleFieldGameLib.Enums;
+    using BattleFieldGameLib.GameObjects.Mines;
     using BattleFieldGameLib.Interfaces;
 
     /// <summary>

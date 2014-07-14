@@ -15,10 +15,12 @@
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                 }
+
                 if (objectsToDraw[i] == 'X')
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                 }
+
                 Console.Write(objectsToDraw[i]);
                 Console.ResetColor();
             }
@@ -36,6 +38,7 @@
                 Console.Write(textToDraw[i]);
                 Console.ResetColor();
             }
+
             Console.WriteLine();
         }
 
