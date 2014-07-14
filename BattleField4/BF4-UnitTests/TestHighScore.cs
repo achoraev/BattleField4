@@ -13,7 +13,7 @@
         {
             for (int i = 0; i < 10; i++)
             {
-                var scoreForAdd = new HighScore("angel" + i, i + 50);
+                var scoreForAdd = new HighScore("angel" + i, i * 5);
                 //HighScore.AddHighScore();
                 // HINT: the test method does nothing
             }
