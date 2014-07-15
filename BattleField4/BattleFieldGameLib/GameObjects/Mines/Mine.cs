@@ -7,7 +7,7 @@
     /// <summary>
     /// Mines base class. All mines inherit this class.
     /// </summary>
-    public abstract class Mine : IMine, IExplodable
+    public abstract class Mine : IExplodable
     {
         /// <summary>
         /// Gets or sets the power of the mine.
@@ -25,7 +25,10 @@
         /// Returns mine body. Used method for easy extension or changes in future.
         /// </summary>
         /// <returns>Current mine body integer matrix.</returns>
-        public abstract int[,] GetBlastArea();
+        public int[,] GetBlastArea()
+        {
+            return this.MineBody;
+        }
 
         /// <summary>
         /// Method needed for the mine factory. Creates a mine.

@@ -71,7 +71,6 @@
     <Compile Include="Interfaces\IGameField.cs" />
     <Compile Include="Interfaces\IInputable.cs" />
     <Compile Include="Interfaces\IInputHandler.cs" />
-    <Compile Include="Interfaces\IMine.cs" />
     <Compile Include="Interfaces\IMineFactory.cs" />
     <Compile Include="Plugins\HighScore.cs" />
     <Compile Include="Interfaces\IExplodable.cs" />

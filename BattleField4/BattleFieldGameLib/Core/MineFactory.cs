@@ -14,6 +14,6 @@
         /// </summary>
         /// <param name="power">Accepts MinePower enumeration to determine the power of the mine.</param>
         /// <returns>Returns an instance of IMine with the given power.</returns>
-        public abstract IMine CreateMine(MinePower power);
+        public abstract IExplodable CreateMine(MinePower power);
     }
 }

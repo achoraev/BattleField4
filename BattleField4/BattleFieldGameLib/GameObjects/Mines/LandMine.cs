@@ -18,15 +18,6 @@
         }
 
         /// <summary>
-        /// Returns the body of the given mine. Using method for future modifications.
-        /// </summary>
-        /// <returns>Integer matrix.</returns>
-        public override int[,] GetBlastArea()
-        {
-            return this.MineBody;
-        }
-
-        /// <summary>
         /// Sets the mine body.
         /// </summary>
         public override void CreateMine()

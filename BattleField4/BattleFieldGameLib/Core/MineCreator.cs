@@ -14,14 +14,14 @@
         /// <summary>
         /// List of all currently created mines.
         /// </summary>
-        private Dictionary<MinePower, IMine> createdMines;
+        private Dictionary<MinePower, IExplodable> createdMines;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MineCreator" /> class.
         /// </summary>
         public MineCreator()
         {
-            this.createdMines = new Dictionary<MinePower, IMine>();
+            this.createdMines = new Dictionary<MinePower, IExplodable>();
         }
 
         /// <summary>
@@ -29,9 +29,9 @@
         /// </summary>
         /// <param name="power">Accepts MinePower enumeration.</param>
         /// <returns>Returns an instance of the IMine interface for the current mine power.</returns>
-        public override IMine CreateMine(MinePower power)
+        public override IExplodable CreateMine(MinePower power)
         {
-            IMine mineToReturn = null;
+            IExplodable mineToReturn = null;
 
             if (this.createdMines.ContainsKey(power))
             {

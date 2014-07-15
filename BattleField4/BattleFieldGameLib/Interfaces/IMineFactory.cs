@@ -12,6 +12,6 @@
         /// </summary>
         /// <param name="power">Enumeration MinePower for creating concrete mine.</param>
         /// <returns>Returns an instance of IMine based on the given mine power.</returns>
-        IMine CreateMine(MinePower power);
+        IExplodable CreateMine(MinePower power);
     }
 }

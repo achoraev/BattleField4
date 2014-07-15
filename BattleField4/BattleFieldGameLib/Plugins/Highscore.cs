@@ -10,7 +10,7 @@ namespace BattleFieldGameLib.Plugins
     /// <summary>
     /// Highscore class. Saves the top 10 players in a files. Uses Singleton and Facade patterns.
     /// </summary>
-    public class HighScore : IScorable
+    public class HighScore : IScorable, ICloneable
     {
         /// <summary>
         /// Current player score.
@@ -54,18 +54,7 @@ namespace BattleFieldGameLib.Plugins
         /// Gets or sets the current player score.
         /// </summary>
         /// <value>Score as integer.</value>
-        public int Score
-        {
-            get
-            {
-                return this.score;
-            }
-
-            set
-            {
-                this.score = value;
-            }
-        }
+        public int Score { get; set; }
 
         /// <summary>
         /// Gets or sets the current player username.
@@ -155,6 +144,22 @@ namespace BattleFieldGameLib.Plugins
             scores = scores.OrderByDescending(s => s.Value).ToDictionary(s => s.Key, s => s.Value);
 
             return scores;
+        }
+
+        /// <summary>
+        /// Clones the current highscores dictionary
+        /// </summary>
+        /// <returns>highscrore results</returns>
+        public object Clone()
+        {
+            var highScoreResults = new Dictionary<string, int>();
+
+            foreach (var key in this.highScoresDictionary.Keys)
+            {
+                highScoreResults[key] = this.highScoresDictionary[key];
+            }
+
+            return highScoreResults;
         }
     }
 }
