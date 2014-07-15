@@ -63,6 +63,7 @@
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\ExplosionManager.cs" />
     <Compile Include="Entry.cs" />
+    <Compile Include="Enums\MenuChoice.cs" />
     <Compile Include="GameObjects\Fields\GameField.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IDrawer.cs" />

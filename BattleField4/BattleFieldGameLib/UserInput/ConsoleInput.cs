@@ -9,6 +9,12 @@
     /// </summary>
     public class ConsoleInput : IInputable
     {
+        public int MenuChoice { get; set; }
+
+        public ConsoleInput()
+        {
+            this.MenuChoice = 1;
+        }
         /// <summary>
         /// Gets the field size typed by the user.
         /// </summary>
@@ -61,6 +67,60 @@
             var username = Console.ReadLine();
 
             return username;
+        }
+
+        /// <summary>
+        /// Gets the menu choice of the user.
+        /// </summary>
+        /// <returns>Menu choice the player made.</returns>
+        public int GetMenuChoice()
+        {
+            while (true)
+            {
+                if (Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo pressedKey = Console.ReadKey(true);
+                    while (Console.KeyAvailable)
+                    {
+                        Console.ReadKey(true);
+                    }
+                    if (pressedKey.Key == ConsoleKey.UpArrow)
+                    {
+                        this.MenuChoice--;
+                        break;
+                    }
+                    else if (pressedKey.Key == ConsoleKey.DownArrow)
+                    {
+                        this.MenuChoice++;
+                        break;
+                    }
+                    else if (pressedKey.Key == ConsoleKey.Escape)
+                    {
+                        this.MenuChoice = 3;
+                        break;
+                    }
+                    else if (pressedKey.Key == ConsoleKey.Enter)
+                    {
+                        this.MenuChoice = -1;
+                        break;
+                    }
+                }
+            }
+
+            if (this.MenuChoice > 3)
+            {
+                this.MenuChoice = 1;
+            }
+            else if (this.MenuChoice < 1)
+            {
+                if(this.MenuChoice == -1)
+                {
+                    return this.MenuChoice;
+                }
+                this.MenuChoice = 3;
+            }
+
+            return this.MenuChoice;
         }
     }
 }

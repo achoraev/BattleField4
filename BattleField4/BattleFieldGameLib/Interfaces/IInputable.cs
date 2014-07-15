@@ -22,5 +22,11 @@
         /// </summary>
         /// <returns>The player's username as string.</returns>
         string GetUsername();
+
+        /// <summary>
+        /// Gets the players' menu choise
+        /// </summary>
+        /// <returns>Choice made by the player</returns>
+        int GetMenuChoice();
     }
 }

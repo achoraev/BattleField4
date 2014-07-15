@@ -9,6 +9,11 @@
     public class InputHandler : IInputable
     {
         /// <summary>
+        /// Sets the default menu choice.
+        /// </summary>
+        private const int DefaultMenuChoice = 1;
+
+        /// <summary>
         /// Sets the minimum field size.
         /// </summary>
         private const int MinFieldSize = 6;
@@ -79,6 +84,68 @@
         public string GetUsername()
         {
             return this.inputer.GetUsername();
+        }
+
+        /// <summary>
+        /// Gets the users' menu choise
+        /// </summary>
+        /// <returns>Menu choice of the player.</returns>
+        public int DrawMainMenuChoice(int choice)
+        {
+            switch (choice)
+            {
+                case 1:
+                    {
+                        this.drawer.DrawText("PLAY <<");
+                        this.drawer.DrawText("Highscore");
+                        this.drawer.DrawText("Exit");
+                        break;
+                    }
+                case 2:
+                    {
+                        this.drawer.DrawText("PLAY");
+                        this.drawer.DrawText("Highscore <<");
+                        this.drawer.DrawText("Exit");
+                        break;
+                    }
+                case 3:
+                    {
+                        this.drawer.DrawText("PLAY");
+                        this.drawer.DrawText("Highscore");
+                        this.drawer.DrawText("Exit <<");
+                        break;
+                    }
+                default:
+                    break;
+            }
+
+            return choice;
+        }
+
+        /// <summary>
+        /// Gets the players' menu choise
+        /// </summary>
+        /// <returns>Choice made by the player</returns>
+        public int GetMenuChoice()
+        {
+            int currentChoice = DefaultMenuChoice;
+            int menuChoice = DefaultMenuChoice;
+            bool choiceMade = false;
+
+            while (!choiceMade)
+            {
+                this.drawer.Clear();
+
+                currentChoice = DrawMainMenuChoice(menuChoice);
+                menuChoice = this.inputer.GetMenuChoice();
+
+                if (menuChoice == -1)
+                {
+                    choiceMade = true;
+                }
+            }
+
+            return currentChoice;
         }
     }
 }

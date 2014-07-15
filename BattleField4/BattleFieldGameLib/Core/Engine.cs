@@ -7,7 +7,8 @@
     using BattleFieldGameLib.Interfaces;
     using BattleFieldGameLib.Renderer;
     using BattleFieldGameLib.UserInput;
-    
+    using BattleFieldGameLib.Plugins;
+
     /// <summary>
     /// Facade, Singleton design patterns used for engine. Main game class. Depends on a lot of interfaces documented below.
     /// </summary>
@@ -103,10 +104,25 @@
             // TODO: Draw ingame menu (start/stop music)
             try
             {
-                this.GetUserInfo();
-                this.Initialize();
-                this.GameOn();
-                this.GameOver();
+
+                int choice = this.inputHandler.GetMenuChoice();
+
+                if (choice == (int)MenuChoice.Start)
+                {
+                    this.GetUserInfo();
+                    this.Initialize();
+                    this.GameOn();
+                    this.GameOver();
+                }
+                else if (choice == (int)MenuChoice.Highscore)
+                {
+                    //highscore logic
+                }
+                else if( choice == (int)MenuChoice.Exit)
+                {
+                    this.GoodBye();
+                }
+                
             }
             catch (InvalidOperationException ex)
             {
@@ -116,10 +132,21 @@
         }
 
         /// <summary>
+        /// Displays a short message for the user before ending the game.
+        /// </summary>
+        private void GoodBye()
+        {
+            this.consoleDrawer.Clear();
+            this.consoleDrawer.DrawText("IF YOU DON'T WANT TO PLAY ... FINE!!!");
+        }
+
+        /// <summary>
         /// Gets the user information. Username and Field size.
         /// </summary>
         private void GetUserInfo()
         {
+            this.consoleDrawer.Clear();
+
             this.consoleDrawer.DrawText("Enter user name: ");
             this.user = new User(this.inputHandler.GetUsername());
             this.consoleDrawer.DrawText("Enter field size: ");
@@ -273,7 +300,7 @@
         private void GameOver()
         {
             // TODO: change with highscore logic Use: finalScore
-            this.consoleDrawer.DrawText(string.Format("You made it with: {0} tries", this.finalScore));
+            this.consoleDrawer.DrawText(string.Format("YOU MADE IT WITH: {0} TRIES. CONGRADULATIONS!!!", this.finalScore));
 
             // TODO: Save Highscore USE HighScore
             // TODO: Show highscore USE HighScore

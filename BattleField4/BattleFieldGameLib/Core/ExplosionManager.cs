@@ -139,7 +139,7 @@
         /// Walks through every field of the mines' blast area, if there is a mine - takes it out, mark game field as blasted.
         /// </summary>
         /// <returns>The number of mines taken out by the current mine blast area.</returns>
-        public int HandleExplosion()    // TODO: Rename this method.
+        public int HandleExplosion()
         {
             int fieldLength = this.GameField.FieldBody.GetLength(0) - 1;
             int offsetX = this.CurrentPosition.PosX - 2;
