@@ -9,12 +9,20 @@
     /// </summary>
     public class ConsoleInput : IInputable
     {
-        public int MenuChoice { get; set; }
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConsoleInput" /> class. 
+        /// </summary>
         public ConsoleInput()
         {
             this.MenuChoice = 1;
         }
+
+        /// <summary>
+        /// Gets or sets the menu choice. Holds the choice of the user from the main menu.
+        /// </summary>
+        /// <value>Integer value for the selected menu.</value>
+        public int MenuChoice { get; set; }
+
         /// <summary>
         /// Gets the field size typed by the user.
         /// </summary>
@@ -85,6 +93,7 @@
                     {
                         Console.ReadKey(true);
                     }
+
                     if (pressedKey.Key == ConsoleKey.UpArrow)
                     {
                         this.MenuChoice--;
@@ -109,10 +118,11 @@
             }
             else if (this.MenuChoice < 1)
             {
-                if(this.MenuChoice == -1)
+                if (this.MenuChoice == -1)
                 {
                     return this.MenuChoice;
                 }
+
                 this.MenuChoice = 3;
             }
 

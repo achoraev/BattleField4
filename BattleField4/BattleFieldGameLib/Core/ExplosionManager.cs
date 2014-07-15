@@ -179,12 +179,10 @@
 
                 return minesTakenOut;
             }
-
             catch (NullReferenceException ex)
             {
                 throw new InvalidOperationException("Error. Can't handle explosion", ex);
             }
-
             catch (InvalidOperationException ex)
             {
                 throw new InvalidOperationException("Error. Can't handle explosion", ex);

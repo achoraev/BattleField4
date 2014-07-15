@@ -23,15 +23,8 @@ namespace BattleFieldGameLib.Plugins
         private Dictionary<string, int> sortedDictionary;
 
         /// <summary>
-        /// Current count of top players.
-        /// </summary>
-        private int count = 0;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="HighScore" /> class. 
         /// </summary>
-        /// <param name="name">Player name.</param>
-        /// <param name="score">Player score.</param>
         public HighScore()
         {
             this.highScoresDictionary = new Dictionary<string, int>();
@@ -49,6 +42,8 @@ namespace BattleFieldGameLib.Plugins
         /// <summary>
         /// Saves the high score to a file.
         /// </summary>
+        /// <param name="name">Name of the current player.</param>
+        /// <param name="score">Score of the current player.</param>
         public void Add(string name, int score)
         {
             this.highScoresDictionary.Add(name, score);
@@ -67,30 +62,26 @@ namespace BattleFieldGameLib.Plugins
         /// <summary>
         /// Gets the high score from a file.
         /// </summary>
-        /// <param name="path">Accepts the path to the file.</param>
         /// <returns>A collection of player name and score.</returns>
-        public IDictionary GetHighScore()//string path)
-        {            
-            //using (StreamReader reader = new StreamReader(path))
-            //{
-            //    string line;
-            //    while (!reader.EndOfStream)
-            //    {
-            //        line = reader.ReadLine();
-            //        try
-            //        {
-            //            this.sortedDictionary.Add(line, this.count);
-            //            this.count++;
-            //        }
-            //        catch (ArgumentException ex)
-            //        {
-            //            Console.WriteLine("Invalid score at line \"{0}\": {1}", line, ex);
-            //        }
-            //    }
-            //}
+        public IDictionary GetHighScore()
+        {
+            return this.SortAndPositionHighscores(this.highScoresDictionary);
+        }
 
-            //return this.SortAndPositionHighscores(this.sortedDictionary);
-            return SortAndPositionHighscores(this.highScoresDictionary);
+        /// <summary>
+        /// Clones the current high score dictionary (prototype design pattern).
+        /// </summary>
+        /// <returns>High score results.</returns>
+        public object Clone()
+        {
+            var highScoreResults = new Dictionary<string, int>();
+
+            foreach (var key in this.highScoresDictionary.Keys)
+            {
+                highScoreResults[key] = this.highScoresDictionary[key];
+            }
+
+            return highScoreResults;
         }
 
         /// <summary>
@@ -103,22 +94,6 @@ namespace BattleFieldGameLib.Plugins
             scores = scores.OrderByDescending(s => -s.Value).ToDictionary(s => s.Key, s => s.Value);
 
             return scores;
-        }
-
-        /// <summary>
-        /// Clones the current highscores dictionary (prototype design pattern)
-        /// </summary>
-        /// <returns>highscrore results</returns>
-        public object Clone()
-        {
-            var highScoreResults = new Dictionary<string, int>();
-
-            foreach (var key in this.highScoresDictionary.Keys)
-            {
-                highScoreResults[key] = this.highScoresDictionary[key];
-            }
-
-            return highScoreResults;
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿namespace BattleFieldGameLib.UserInput
 {
     using System;
-    using BattleFieldGameLib.Interfaces;
     using BattleFieldGameLib.Common;
-
+    using BattleFieldGameLib.Interfaces;
+    
     /// <summary>
     /// Main class that will deal with input methods and messages. Implements IInputable interface. Strategy.
     /// </summary>
@@ -46,23 +46,6 @@
         }
 
         /// <summary>
-        /// Asks the user for the field size he wants to play.
-        /// </summary>
-        /// <returns>Integer for the field size.</returns>
-        private int GetFieldSize()
-        {
-            int fieldSize = this.inputer.GetFieldSize();
-
-            while (!(MinFieldSize < fieldSize && fieldSize < MaxFieldSize))
-            {
-                this.drawer.DrawText("You have entered an invalid field size. Must be between [7, 9] ");
-                fieldSize = this.inputer.GetFieldSize();
-            }
-
-            return fieldSize;
-        }
-
-        /// <summary>
         /// Asks the user for the next position he wants to hit.
         /// </summary>
         /// <returns>IPosition instance.</returns>
@@ -79,18 +62,35 @@
         }
 
         /// <summary>
-        /// Asks the user for his username. Used for High score.
+        /// Gets the players' menu choice.
         /// </summary>
-        /// <returns>String player's username.</returns>
-        private string GetUsername()
+        /// <returns>Choice made by the player.</returns>
+        public int GetMenuChoice()
         {
-            return this.inputer.GetUsername();
+            int currentChoice = DefaultMenuChoice;
+            int menuChoice = DefaultMenuChoice;
+            bool choiceMade = false;
+
+            while (!choiceMade)
+            {
+                this.drawer.Clear();
+
+                currentChoice = this.DrawMainMenuChoice(menuChoice);
+                menuChoice = this.inputer.GetMenuChoice();
+
+                if (menuChoice == -1)
+                {
+                    choiceMade = true;
+                }
+            }
+
+            return currentChoice;
         }
 
         /// <summary>
-        /// Deals with getting the user input for username and fieldsize
+        /// Deals with getting the user input for username and field size.
         /// </summary>
-        /// <returns>The user data</returns>
+        /// <returns>The user data.</returns>
         public IUser HandleUserInput()
         {
             this.drawer.DrawText("Enter user name: ");
@@ -102,8 +102,18 @@
         }
 
         /// <summary>
-        /// Gets the users' menu choise
+        /// Asks the user for his username. Used for High score.
         /// </summary>
+        /// <returns>String player's username.</returns>
+        private string GetUsername()
+        {
+            return this.inputer.GetUsername();
+        }
+
+        /// <summary>
+        /// Gets the users' menu choice.
+        /// </summary>
+        /// <param name="choice">The choice from the menu the user has made as integer.</param>
         /// <returns>Menu choice of the player.</returns>
         private int DrawMainMenuChoice(int choice)
         {
@@ -111,31 +121,31 @@
             {
                 case 1:
                     {
-
                         this.drawer.DrawText("B A T T L E F I E L D  4\n");
                         this.drawer.DrawText("PLAY <<");
                         this.drawer.DrawText("Highscore");
                         this.drawer.DrawText("Exit");
                         break;
                     }
+
                 case 2:
                     {
-
                         this.drawer.DrawText("B A T T L E F I E L D  4\n");
                         this.drawer.DrawText("PLAY");
                         this.drawer.DrawText("Highscore <<");
                         this.drawer.DrawText("Exit");
                         break;
                     }
+
                 case 3:
                     {
-
                         this.drawer.DrawText("B A T T L E F I E L D  4\n");
                         this.drawer.DrawText("PLAY");
                         this.drawer.DrawText("Highscore");
                         this.drawer.DrawText("Exit <<");
                         break;
                     }
+
                 default:
                     break;
             }
@@ -144,29 +154,20 @@
         }
 
         /// <summary>
-        /// Gets the players' menu choise
+        /// Asks the user for the field size he wants to play.
         /// </summary>
-        /// <returns>Choice made by the player</returns>
-        public int GetMenuChoice()
+        /// <returns>Integer for the field size.</returns>
+        private int GetFieldSize()
         {
-            int currentChoice = DefaultMenuChoice;
-            int menuChoice = DefaultMenuChoice;
-            bool choiceMade = false;
+            int fieldSize = this.inputer.GetFieldSize();
 
-            while (!choiceMade)
+            while (!(MinFieldSize < fieldSize && fieldSize < MaxFieldSize))
             {
-                this.drawer.Clear();
-
-                currentChoice = DrawMainMenuChoice(menuChoice);
-                menuChoice = this.inputer.GetMenuChoice();
-
-                if (menuChoice == -1)
-                {
-                    choiceMade = true;
-                }
+                this.drawer.DrawText("You have entered an invalid field size. Must be between [7, 9] ");
+                fieldSize = this.inputer.GetFieldSize();
             }
 
-            return currentChoice;
+            return fieldSize;
         }
     }
 }

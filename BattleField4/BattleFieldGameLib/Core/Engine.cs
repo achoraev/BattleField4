@@ -5,9 +5,9 @@
     using BattleFieldGameLib.Enums;
     using BattleFieldGameLib.GameObjects.Fields;
     using BattleFieldGameLib.Interfaces;
+    using BattleFieldGameLib.Plugins;
     using BattleFieldGameLib.Renderer;
     using BattleFieldGameLib.UserInput;
-    using BattleFieldGameLib.Plugins;
 
     /// <summary>
     /// Facade, Singleton design patterns used for engine. Main game class. Depends on a lot of interfaces documented below.
@@ -65,7 +65,7 @@
         private IUser user;
 
         /// <summary>
-        /// Holds a single instance of the Highscore class
+        /// Holds a single instance of the Highscore class.
         /// </summary>
         private IScorer highscore;
 
@@ -110,7 +110,6 @@
             // TODO: Draw ingame menu (start/stop music)
             try
             {
-
                 int choice = this.inputHandler.GetMenuChoice();
 
                 if (choice == (int)MenuChoice.Start)
@@ -123,13 +122,11 @@
                 else if (choice == (int)MenuChoice.Highscore)
                 {
                     this.PrintHighsores();
-
                 }
                 else if (choice == (int)MenuChoice.Exit)
                 {
                     this.GoodBye();
                 }
-
             }
             catch (InvalidOperationException ex)
             {
@@ -139,21 +136,21 @@
         }
 
         /// <summary>
-        /// gets the highscore and prints it to the console
+        /// Gets the high score and prints it to the console.
         /// </summary>
         private void PrintHighsores()
         {
             this.consoleDrawer.Clear();
 
-            this.consoleDrawer.DrawText(string.Format("{0}-=HIGHSCORES=-", "".PadRight(5, ' ')));//don't ask
+            this.consoleDrawer.DrawText(string.Format("{0}-=HIGHSCORES=-", string.Empty.PadRight(5, ' ')));
 
-            //examples .. can be separated
-            highscore.Add("b", 12);
-            highscore.Add("a", 4);
-            highscore.Add("d", 6);
-            highscore.Add("c", 7);
+            // Examples .. can be separated
+            this.highscore.Add("b", 12);
+            this.highscore.Add("a", 4);
+            this.highscore.Add("d", 6);
+            this.highscore.Add("c", 7);
 
-            var resultHighscore = highscore.GetHighScore();
+            var resultHighscore = this.highscore.GetHighScore();
 
             foreach (var user in resultHighscore.Keys)
             {
@@ -325,9 +322,7 @@
         /// </summary>
         private void GameOver()
         {
-            //this.consoleDrawer.DrawText(string.Format("YOU MADE IT WITH: {0} TRIES. CONGRADULATIONS!!!", this.finalScore));
-
-            this.highscore.Add(user.Username, this.finalScore);
+            this.highscore.Add(this.user.Username, this.finalScore);
             this.PrintHighsores();
         }
     }

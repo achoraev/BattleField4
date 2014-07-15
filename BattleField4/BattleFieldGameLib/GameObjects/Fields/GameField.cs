@@ -1,8 +1,8 @@
 ﻿namespace BattleFieldGameLib.GameObjects.Fields
 {
-    using BattleFieldGameLib.Interfaces;
     using System;
     using System.Text;
+    using BattleFieldGameLib.Interfaces;
 
     /// <summary>
     /// Game Field Class. Holds the information about the game field and mine positions. Implements IGameField, IDrawable.
@@ -14,6 +14,9 @@
         /// </summary>
         public const int FieldSizeIncrement = 2; // Increases matrix size by 2 for menu items
 
+        /// <summary>
+        /// Used for drawing.
+        /// </summary>
         public const int DefaultFieldPadding = 3;
 
         /// <summary>
@@ -27,15 +30,15 @@
         }
 
         /// <summary>
-        /// Property to save the value of the fields' size
-        /// </summary>
-        private int FieldSize { get; set; }
-
-        /// <summary>
         /// Gets or sets field body. Holds game information represented in char matrix.
         /// </summary>
         /// <value>Char Matrix.</value>
         public char[,] FieldBody { get; set; }
+
+        /// <summary>
+        /// Gets or sets property to save the value of the fields' size.
+        /// </summary>
+        private int FieldSize { get; set; }
 
         /// <summary>
         /// Gets or sets a given cell in the game field matrix.
@@ -55,20 +58,6 @@
             {
                 this.ValidateIndex(row, col);
                 this.FieldBody[row, col] = value;
-            }
-        }
-
-        /// <summary>
-        /// Validates if the position is inside the game field
-        /// </summary>
-        /// <param name="row"></param>
-        /// <param name="col"></param>
-        private void ValidateIndex(int row, int col)
-        {
-            if (row < 0 || row > this.FieldSize ||
-                    col < 0 || col > this.FieldSize)
-            {
-                throw new IndexOutOfRangeException("Index is outside of gamefields' bounds!");
             }
         }
 
@@ -99,6 +88,20 @@
             }
 
             return bodyToDraw.ToString();
+        }
+
+        /// <summary>
+        /// Validates if the position is inside the game field.
+        /// </summary>
+        /// <param name="row">Row or X coordinate of the game field.</param>
+        /// <param name="col">Col or Y coordinate of the game field.</param>
+        private void ValidateIndex(int row, int col)
+        {
+            if (row < 0 || row > this.FieldSize ||
+                    col < 0 || col > this.FieldSize)
+            {
+                throw new IndexOutOfRangeException("Index is outside of gamefields' bounds!");
+            }
         }
 
         /// <summary>
