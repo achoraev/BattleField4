@@ -116,18 +116,40 @@
                 }
                 else if (choice == (int)MenuChoice.Highscore)
                 {
-                    //highscore logic
+                    this.consoleDrawer.Clear();
+                    this.PrintHighsores();
+
                 }
-                else if( choice == (int)MenuChoice.Exit)
+                else if (choice == (int)MenuChoice.Exit)
                 {
                     this.GoodBye();
                 }
-                
+
             }
             catch (InvalidOperationException ex)
             {
                 // TODO: Catch in the invoker, e.g. the Entry class, and print the errors
                 throw new InvalidOperationException(string.Format("Error starting the game! {0}"), ex);
+            }
+        }
+
+        private void PrintHighsores()
+        {
+            this.consoleDrawer.DrawText("HIGHSCORES: \n");
+
+            var highscore = new HighScore();
+
+            //examples .. can be separated
+            highscore.Add("plamen", 12);
+            highscore.Add("svetla", 123);
+            highscore.Add("pesho", 1233);
+            highscore.Add("gosho", 13322);
+
+            var resultHighscore = highscore.GetHighScore();
+
+            foreach (var user in resultHighscore.Keys)
+            {
+                this.consoleDrawer.DrawText(string.Format("{0} - {1}", user, resultHighscore[user]));
             }
         }
 

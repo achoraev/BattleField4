@@ -10,18 +10,8 @@ namespace BattleFieldGameLib.Plugins
     /// <summary>
     /// Highscore class. Saves the top 10 players in a files. Uses Singleton and Facade patterns.
     /// </summary>
-    public class HighScore : IScorable, ICloneable
+    public class HighScore : ICloneable
     {
-        /// <summary>
-        /// Current player score.
-        /// </summary>
-        private int score;
-
-        /// <summary>
-        /// Current player username.
-        /// </summary>
-        private string name;
-
         /// <summary>
         /// A collection holding player names and scores.
         /// </summary>
@@ -42,42 +32,10 @@ namespace BattleFieldGameLib.Plugins
         /// </summary>
         /// <param name="name">Player name.</param>
         /// <param name="score">Player score.</param>
-        public HighScore(string name, int score)
+        public HighScore()
         {
             this.highScoresDictionary = new Dictionary<string, int>();
             this.sortedDictionary = new Dictionary<string, int>();
-            this.Name = name;
-            this.Score = score;
-        }
-
-        /// <summary>
-        /// Gets or sets the current player score.
-        /// </summary>
-        /// <value>Score as integer.</value>
-        public int Score { get; set; }
-
-        /// <summary>
-        /// Gets or sets the current player username.
-        /// </summary>
-        /// <value>Name as string.</value>
-        public string Name
-        {
-            get
-            {
-                return this.name;
-            }
-
-            set
-            {
-                if (value != null)
-                {
-                    this.name = value;
-                }
-                else
-                {
-                    throw new ArgumentNullException("Name can't be null value");
-                }
-            }
         }
       
         /// <summary>
@@ -91,9 +49,9 @@ namespace BattleFieldGameLib.Plugins
         /// <summary>
         /// Saves the high score to a file.
         /// </summary>
-        public void AddHighScore()
+        public void Add(string name, int score)
         {
-            this.highScoresDictionary.Add(this.name, this.score);
+            this.highScoresDictionary.Add(name, score);
 
             using (var writer = new StreamWriter("..//highscores.txt", true))
             {
@@ -111,27 +69,28 @@ namespace BattleFieldGameLib.Plugins
         /// </summary>
         /// <param name="path">Accepts the path to the file.</param>
         /// <returns>A collection of player name and score.</returns>
-        public IDictionary GetHighScore(string path)
+        public IDictionary GetHighScore()//string path)
         {            
-            using (StreamReader reader = new StreamReader(path))
-            {
-                string line;
-                while (!reader.EndOfStream)
-                {
-                    line = reader.ReadLine();
-                    try
-                    {
-                        this.sortedDictionary.Add(line, this.count);
-                        this.count++;
-                    }
-                    catch (ArgumentException ex)
-                    {
-                        Console.WriteLine("Invalid score at line \"{0}\": {1}", line, ex);
-                    }
-                }
-            }
+            //using (StreamReader reader = new StreamReader(path))
+            //{
+            //    string line;
+            //    while (!reader.EndOfStream)
+            //    {
+            //        line = reader.ReadLine();
+            //        try
+            //        {
+            //            this.sortedDictionary.Add(line, this.count);
+            //            this.count++;
+            //        }
+            //        catch (ArgumentException ex)
+            //        {
+            //            Console.WriteLine("Invalid score at line \"{0}\": {1}", line, ex);
+            //        }
+            //    }
+            //}
 
-            return this.SortAndPositionHighscores(this.sortedDictionary);
+            //return this.SortAndPositionHighscores(this.sortedDictionary);
+            return this.highScoresDictionary;
         }
 
         /// <summary>
@@ -147,7 +106,7 @@ namespace BattleFieldGameLib.Plugins
         }
 
         /// <summary>
-        /// Clones the current highscores dictionary
+        /// Clones the current highscores dictionary (prototype design pattern)
         /// </summary>
         /// <returns>highscrore results</returns>
         public object Clone()
