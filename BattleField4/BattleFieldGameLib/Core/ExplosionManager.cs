@@ -141,41 +141,54 @@
         /// <returns>The number of mines taken out by the current mine blast area.</returns>
         public int HandleExplosion()
         {
-            int fieldLength = this.GameField.FieldBody.GetLength(0) - 1;
-            int offsetX = this.CurrentPosition.PosX - 2;
-            int offsetY = this.CurrentPosition.PosY - 2;
-            int[,] mineBody = this.CurrentMine.GetBlastArea();
-
-            int minesTakenOut = 0;
-
-            // Walks through every field of the mines' blast area
-            for (int row = 0; row < mineBody.GetLength(0); row++)
+            try
             {
-                for (int col = 0; col < mineBody.GetLength(1); col++)
+                int fieldLength = this.GameField.FieldBody.GetLength(0) - 1;
+                int offsetX = this.CurrentPosition.PosX - 2;
+                int offsetY = this.CurrentPosition.PosY - 2;
+                int[,] mineBody = this.CurrentMine.GetBlastArea();
+
+                int minesTakenOut = 0;
+
+                // Walks through every field of the mines' blast area
+                for (int row = 0; row < mineBody.GetLength(0); row++)
                 {
-                    int rowField = row + offsetX;
-                    int colField = col + offsetY;
-
-                    // Don't do anything if you're not in the game field
-                    if (rowField < 0 || fieldLength < rowField || colField < 0 || fieldLength < colField)
+                    for (int col = 0; col < mineBody.GetLength(1); col++)
                     {
-                        continue;
-                    }
+                        int rowField = row + offsetX;
+                        int colField = col + offsetY;
 
-                    // If the blast area covers this field
-                    if (mineBody[row, col] == 1)
-                    {
-                        if (this.IsThereMineIn(rowField, colField))
+                        // Don't do anything if you're not in the game field
+                        if (rowField < 0 || fieldLength < rowField || colField < 0 || fieldLength < colField)
                         {
-                            minesTakenOut++;
+                            continue;
                         }
 
-                        this.MarkFieldAsBlasted(rowField, colField);
+                        // If the blast area covers this field
+                        if (mineBody[row, col] == 1)
+                        {
+                            if (this.IsThereMineIn(rowField, colField))
+                            {
+                                minesTakenOut++;
+                            }
+
+                            this.MarkFieldAsBlasted(rowField, colField);
+                        }
                     }
                 }
+
+                return minesTakenOut;
             }
 
-            return minesTakenOut;
+            catch (NullReferenceException ex)
+            {
+                throw new InvalidOperationException("Error. Can't handle explosion", ex);
+            }
+
+            catch (InvalidOperationException ex)
+            {
+                throw new InvalidOperationException("Error. Can't handle explosion", ex);
+            }
         }
 
         /// <summary>
