@@ -90,7 +90,7 @@ namespace BattleFieldGameLib.Plugins
             //}
 
             //return this.SortAndPositionHighscores(this.sortedDictionary);
-            return this.highScoresDictionary;
+            return SortAndPositionHighscores(this.highScoresDictionary);
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace BattleFieldGameLib.Plugins
         /// <returns>Sorted collection by score.</returns>
         private Dictionary<string, int> SortAndPositionHighscores(Dictionary<string, int> scores)
         {
-            scores = scores.OrderByDescending(s => s.Value).ToDictionary(s => s.Key, s => s.Value);
+            scores = scores.OrderByDescending(s => -s.Value).ToDictionary(s => s.Key, s => s.Value);
 
             return scores;
         }

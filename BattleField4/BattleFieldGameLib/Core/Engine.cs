@@ -65,6 +65,11 @@
         private IUser user;
 
         /// <summary>
+        /// Holds a single instance of the Highscore class
+        /// </summary>
+        private HighScore highscore;
+
+        /// <summary>
         /// The final player score.
         /// </summary>
         private int finalScore;
@@ -78,6 +83,7 @@
             this.consoleReader = new ConsoleInput();
             this.inputHandler = new InputHandler(this.consoleDrawer, this.consoleReader);
             this.mineFactory = new MineCreator();
+            this.highscore = new HighScore();
             this.finalScore = InitialScore;
         }
 
@@ -116,7 +122,6 @@
                 }
                 else if (choice == (int)MenuChoice.Highscore)
                 {
-                    this.consoleDrawer.Clear();
                     this.PrintHighsores();
 
                 }
@@ -133,17 +138,20 @@
             }
         }
 
+        /// <summary>
+        /// gets the highscore and prints it to the console
+        /// </summary>
         private void PrintHighsores()
         {
+            this.consoleDrawer.Clear();
+
             this.consoleDrawer.DrawText("HIGHSCORES: \n");
 
-            var highscore = new HighScore();
-
             //examples .. can be separated
-            highscore.Add("plamen", 12);
-            highscore.Add("svetla", 123);
-            highscore.Add("pesho", 1233);
-            highscore.Add("gosho", 13322);
+            highscore.Add("a", 12);
+            highscore.Add("b", 4);
+            highscore.Add("c", 6);
+            highscore.Add("d", 7);
 
             var resultHighscore = highscore.GetHighScore();
 
@@ -317,11 +325,10 @@
         /// </summary>
         private void GameOver()
         {
-            // TODO: change with highscore logic Use: finalScore
-            this.consoleDrawer.DrawText(string.Format("YOU MADE IT WITH: {0} TRIES. CONGRADULATIONS!!!", this.finalScore));
+            //this.consoleDrawer.DrawText(string.Format("YOU MADE IT WITH: {0} TRIES. CONGRADULATIONS!!!", this.finalScore));
 
-            // TODO: Save Highscore USE HighScore
-            // TODO: Show highscore USE HighScore
+            this.highscore.Add(user.Username, this.finalScore);
+            this.PrintHighsores();
         }
     }
 }
