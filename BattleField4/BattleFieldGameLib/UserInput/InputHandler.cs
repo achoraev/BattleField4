@@ -2,11 +2,12 @@
 {
     using System;
     using BattleFieldGameLib.Interfaces;
+    using BattleFieldGameLib.Common;
 
     /// <summary>
     /// Main class that will deal with input methods and messages. Implements IInputable interface. Strategy.
     /// </summary>
-    public class InputHandler : IInputable
+    public class InputHandler : IInputHandler
     {
         /// <summary>
         /// Sets the default menu choice.
@@ -48,7 +49,7 @@
         /// Asks the user for the field size he wants to play.
         /// </summary>
         /// <returns>Integer for the field size.</returns>
-        public int GetFieldSize()
+        private int GetFieldSize()
         {
             int fieldSize = this.inputer.GetFieldSize();
 
@@ -81,21 +82,37 @@
         /// Asks the user for his username. Used for High score.
         /// </summary>
         /// <returns>String player's username.</returns>
-        public string GetUsername()
+        private string GetUsername()
         {
             return this.inputer.GetUsername();
+        }
+
+        /// <summary>
+        /// Deals with getting the user input for username and fieldsize
+        /// </summary>
+        /// <returns>The user data</returns>
+        public User HandleUserInput()
+        {
+            this.drawer.DrawText("Enter user name: ");
+            User user = new User(this.GetUsername());
+            this.drawer.DrawText("Enter field size: ");
+            user.FieldSize = this.GetFieldSize();
+
+            return user;
         }
 
         /// <summary>
         /// Gets the users' menu choise
         /// </summary>
         /// <returns>Menu choice of the player.</returns>
-        public int DrawMainMenuChoice(int choice)
+        private int DrawMainMenuChoice(int choice)
         {
             switch (choice)
             {
                 case 1:
                     {
+
+                        this.drawer.DrawText("B A T T L E F I E L D  4\n");
                         this.drawer.DrawText("PLAY <<");
                         this.drawer.DrawText("Highscore");
                         this.drawer.DrawText("Exit");
@@ -103,6 +120,8 @@
                     }
                 case 2:
                     {
+
+                        this.drawer.DrawText("B A T T L E F I E L D  4\n");
                         this.drawer.DrawText("PLAY");
                         this.drawer.DrawText("Highscore <<");
                         this.drawer.DrawText("Exit");
@@ -110,6 +129,8 @@
                     }
                 case 3:
                     {
+
+                        this.drawer.DrawText("B A T T L E F I E L D  4\n");
                         this.drawer.DrawText("PLAY");
                         this.drawer.DrawText("Highscore");
                         this.drawer.DrawText("Exit <<");

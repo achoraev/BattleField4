@@ -42,7 +42,7 @@
         /// <summary>
         /// Holds an instance of the class that will be used to handle the information from the user.
         /// </summary>
-        private IInputable inputHandler;
+        private IInputHandler inputHandler;
 
         /// <summary>
         /// Holds an instance of the class that will be used to creates mines for the game. Factory pattern.
@@ -146,11 +146,7 @@
         private void GetUserInfo()
         {
             this.consoleDrawer.Clear();
-
-            this.consoleDrawer.DrawText("Enter user name: ");
-            this.user = new User(this.inputHandler.GetUsername());
-            this.consoleDrawer.DrawText("Enter field size: ");
-            this.user.FieldSize = this.inputHandler.GetFieldSize();
+            this.user = this.inputHandler.HandleUserInput();
         }
 
         /// <summary>
