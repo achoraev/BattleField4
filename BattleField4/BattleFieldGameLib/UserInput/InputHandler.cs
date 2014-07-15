@@ -22,7 +22,7 @@
         /// <summary>
         /// Sets the maximum field size.
         /// </summary>
-        private const int MaxFieldSize = 40;
+        private const int MaxFieldSize = 10;
 
         /// <summary>
         /// Holds the instance of the IDrawer interface that is used to write/draw/show the information.
@@ -55,7 +55,7 @@
 
             while (!(MinFieldSize < fieldSize && fieldSize < MaxFieldSize))
             {
-                this.drawer.DrawText("You have entered an invalid field size. Please try again: ");
+                this.drawer.DrawText("You have entered an invalid field size. Must be between [7, 9] ");
                 fieldSize = this.inputer.GetFieldSize();
             }
 
@@ -71,7 +71,7 @@
             var position = this.inputer.GetPositon();
             while (position == null)
             {
-                this.drawer.DrawText("You have entered an invalid position. Please try again: ");
+                this.drawer.DrawText("You have entered an invalid position. Example: '5 4'");
                 position = this.inputer.GetPositon();
             }
 

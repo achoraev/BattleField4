@@ -1,7 +1,8 @@
 ﻿namespace BattleFieldGameLib.GameObjects.Fields
 {
-    using System.Text;
     using BattleFieldGameLib.Interfaces;
+    using System;
+    using System.Text;
 
     /// <summary>
     /// Game Field Class. Holds the information about the game field and mine positions. Implements IGameField, IDrawable.
@@ -13,14 +14,22 @@
         /// </summary>
         public const int FieldSizeIncrement = 2; // Increases matrix size by 2 for menu items
 
+        public const int DefaultFieldPadding = 3;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GameField" /> class. 
         /// </summary>
         /// <param name="fieldSize">Field size.</param>
         public GameField(int fieldSize)
         {
+            this.FieldSize = fieldSize;
             this.FieldBody = new char[fieldSize, fieldSize];
         }
+
+        /// <summary>
+        /// Property to save the value of the fields' size
+        /// </summary>
+        private int FieldSize { get; set; }
 
         /// <summary>
         /// Gets or sets field body. Holds game information represented in char matrix.
@@ -38,12 +47,28 @@
         {
             get
             {
+                this.ValidateIndex(row, col);
                 return this.FieldBody[row, col];
             }
 
             set
             {
+                this.ValidateIndex(row, col);
                 this.FieldBody[row, col] = value;
+            }
+        }
+
+        /// <summary>
+        /// Validates if the position is inside the game field
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="col"></param>
+        private void ValidateIndex(int row, int col)
+        {
+            if (row < 0 || row > this.FieldSize ||
+                    col < 0 || col > this.FieldSize)
+            {
+                throw new IndexOutOfRangeException("Index is outside of gamefields' bounds!");
             }
         }
 
@@ -56,21 +81,21 @@
             StringBuilder bodyToDraw = new StringBuilder();
             bodyToDraw.Append("    ");
 
-            for (int i = 0; i < this.FieldBody.GetLength(0); i++)
+            for (int i = 0; i < this.FieldSize; i++)
             {
-                bodyToDraw.Append(string.Format("{0}", i.ToString().PadRight(3, ' ')));
+                bodyToDraw.Append(string.Format("{0}", i.ToString().PadRight(DefaultFieldPadding, ' ')));
             }
 
             bodyToDraw.AppendLine();
             bodyToDraw.Append("    ");
-            bodyToDraw.Append(new string('-', this.FieldBody.GetLength(0) * 3));
+            bodyToDraw.Append(new string('-', this.FieldSize * DefaultFieldPadding));
 
             bodyToDraw.AppendLine();
 
-            for (int i = 0; i < this.FieldBody.GetLength(0); i++)
+            for (int i = 0; i < this.FieldSize; i++)
             {
-                bodyToDraw.AppendLine(string.Format("{0}| {1}", i.ToString().PadLeft(2, ' '), this.GetRowInformation(i)));
-                bodyToDraw.AppendLine("    " + new string('-', this.FieldBody.GetLength(0) * 3));
+                bodyToDraw.AppendLine(string.Format("{0}| {1}", i.ToString().PadLeft(DefaultFieldPadding - 1, ' '), this.GetRowInformation(i)));
+                bodyToDraw.AppendLine("    " + new string('-', this.FieldSize * DefaultFieldPadding));
             }
 
             return bodyToDraw.ToString();
@@ -87,7 +112,7 @@
 
             for (int col = 0; col < this.FieldBody.GetLength(0); col++)
             {
-                result.Append(string.Format("{0}", this.FieldBody[rowNumber, col].ToString().PadRight(2, ' ')));
+                result.Append(string.Format("{0}", this.FieldBody[rowNumber, col].ToString().PadRight(DefaultFieldPadding - 1, ' ')));
                 result.Append('|');
             }
 

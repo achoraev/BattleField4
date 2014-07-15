@@ -14,8 +14,8 @@
         public void CreateMineShouldReturnProperMines()
         {
             IMineFactory mineCreator = new MineCreator();
-            IMine lumpetByCreator = mineCreator.CreateMine(MinePower.One);    // Should return 'Lumpet Mine'
-            IMine nuclearByCreator = mineCreator.CreateMine(MinePower.Four); // Should return 'Nuclear Mine';
+            IExplodable lumpetByCreator = mineCreator.CreateMine(MinePower.One);    // Should return 'Lumpet Mine'
+            IExplodable nuclearByCreator = mineCreator.CreateMine(MinePower.Four); // Should return 'Nuclear Mine';
             bool isLumpet = lumpetByCreator is LimpetMine;
             bool isNuclear = nuclearByCreator is NuclearMine;
             Assert.IsTrue(isLumpet && isNuclear);
@@ -26,7 +26,7 @@
         public void CreateMineWithInvaludPowerShouldThrowExeption() 
         {
             IMineFactory mineCreator = new MineCreator();
-            IMine lumpetByCreator = mineCreator.CreateMine(new MinePower());    // Hack the mine system
+            IExplodable lumpetByCreator = mineCreator.CreateMine(new MinePower());    // Hack the mine system
         }
     }
 }

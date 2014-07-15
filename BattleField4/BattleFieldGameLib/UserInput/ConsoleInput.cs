@@ -80,6 +80,7 @@
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo pressedKey = Console.ReadKey(true);
+
                     while (Console.KeyAvailable)
                     {
                         Console.ReadKey(true);
@@ -92,11 +93,6 @@
                     else if (pressedKey.Key == ConsoleKey.DownArrow)
                     {
                         this.MenuChoice++;
-                        break;
-                    }
-                    else if (pressedKey.Key == ConsoleKey.Escape)
-                    {
-                        this.MenuChoice = 3;
                         break;
                     }
                     else if (pressedKey.Key == ConsoleKey.Enter)

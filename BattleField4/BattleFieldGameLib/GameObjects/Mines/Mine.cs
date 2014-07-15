@@ -27,6 +27,11 @@
         /// <returns>Current mine body integer matrix.</returns>
         public int[,] GetBlastArea()
         {
+            if (this.MineBody.GetLength(0) != 5 || this.MineBody.GetLength(1) != 5)
+            {
+                throw new ArgumentException("Mines have to be int[5, 5] (5x5)");
+            }
+
             return this.MineBody;
         }
 
