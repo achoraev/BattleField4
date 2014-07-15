@@ -91,10 +91,10 @@
         /// Deals with getting the user input for username and fieldsize
         /// </summary>
         /// <returns>The user data</returns>
-        public User HandleUserInput()
+        public IUser HandleUserInput()
         {
             this.drawer.DrawText("Enter user name: ");
-            User user = new User(this.GetUsername());
+            IUser user = new User(this.GetUsername());
             this.drawer.DrawText("Enter field size: ");
             user.FieldSize = this.GetFieldSize();
 

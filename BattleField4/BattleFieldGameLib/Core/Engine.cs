@@ -62,7 +62,7 @@
         /// <summary>
         /// Holds an instance of the class that will be used to store user data.
         /// </summary>
-        private User user;
+        private IUser user;
 
         /// <summary>
         /// The final player score.

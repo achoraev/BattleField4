@@ -20,6 +20,6 @@
         /// Deals with getting the user input for username and fieldsize
         /// </summary>
         /// <returns>The user data</returns>
-        User HandleUserInput();
+        IUser HandleUserInput();
     }
 }

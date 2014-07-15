@@ -72,6 +72,7 @@
     <Compile Include="Interfaces\IInputable.cs" />
     <Compile Include="Interfaces\IInputHandler.cs" />
     <Compile Include="Interfaces\IMineFactory.cs" />
+    <Compile Include="Interfaces\IUser.cs" />
     <Compile Include="Plugins\HighScore.cs" />
     <Compile Include="Interfaces\IExplodable.cs" />
     <Compile Include="Interfaces\IScorable.cs" />

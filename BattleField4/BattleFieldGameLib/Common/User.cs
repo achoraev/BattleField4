@@ -5,7 +5,7 @@
     /// <summary>
     /// User class. Keeps information about the current player.
     /// </summary>
-    public class User
+    public class User : IUser
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="User" /> class. 
