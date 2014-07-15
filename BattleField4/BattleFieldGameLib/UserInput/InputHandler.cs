@@ -17,12 +17,12 @@
         /// <summary>
         /// Sets the minimum field size.
         /// </summary>
-        private const int MinFieldSize = 6;
+        public const int MinFieldSize = 6;
 
         /// <summary>
         /// Sets the maximum field size.
         /// </summary>
-        private const int MaxFieldSize = 10;
+        public const int MaxFieldSize = 10;
 
         /// <summary>
         /// Holds the instance of the IDrawer interface that is used to write/draw/show the information.
@@ -157,7 +157,7 @@
         /// Asks the user for the field size he wants to play.
         /// </summary>
         /// <returns>Integer for the field size.</returns>
-        private int GetFieldSize()
+        public int GetFieldSize()
         {
             int fieldSize = this.inputer.GetFieldSize();
 
