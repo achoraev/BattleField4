@@ -67,7 +67,7 @@
         /// <summary>
         /// Holds a single instance of the Highscore class
         /// </summary>
-        private HighScore highscore;
+        private IScorer highscore;
 
         /// <summary>
         /// The final player score.
@@ -145,19 +145,19 @@
         {
             this.consoleDrawer.Clear();
 
-            this.consoleDrawer.DrawText("HIGHSCORES: \n");
+            this.consoleDrawer.DrawText(string.Format("{0}-=HIGHSCORES=-", "".PadRight(5, ' ')));//don't ask
 
             //examples .. can be separated
-            highscore.Add("a", 12);
-            highscore.Add("b", 4);
-            highscore.Add("c", 6);
-            highscore.Add("d", 7);
+            highscore.Add("b", 12);
+            highscore.Add("a", 4);
+            highscore.Add("d", 6);
+            highscore.Add("c", 7);
 
             var resultHighscore = highscore.GetHighScore();
 
             foreach (var user in resultHighscore.Keys)
             {
-                this.consoleDrawer.DrawText(string.Format("{0} - {1}", user, resultHighscore[user]));
+                this.consoleDrawer.DrawText(string.Format("{0} - {1}", user.ToString().PadLeft(10, ' '), resultHighscore[user]));
             }
         }
 

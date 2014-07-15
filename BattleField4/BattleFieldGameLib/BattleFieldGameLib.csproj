@@ -75,7 +75,7 @@
     <Compile Include="Interfaces\IUser.cs" />
     <Compile Include="Plugins\HighScore.cs" />
     <Compile Include="Interfaces\IExplodable.cs" />
-    <Compile Include="Interfaces\IScorable.cs" />
+    <Compile Include="Interfaces\IScorer.cs" />
     <Compile Include="GameObjects\Mines\NavelMine.cs" />
     <Compile Include="GameObjects\Mines\FatherBomb.cs" />
     <Compile Include="GameObjects\Mines\LimpetMine.cs" />

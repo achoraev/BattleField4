@@ -10,7 +10,7 @@ namespace BattleFieldGameLib.Plugins
     /// <summary>
     /// Highscore class. Saves the top 10 players in a files. Uses Singleton and Facade patterns.
     /// </summary>
-    public class HighScore : ICloneable
+    public class HighScore : IScorer, ICloneable
     {
         /// <summary>
         /// A collection holding player names and scores.
