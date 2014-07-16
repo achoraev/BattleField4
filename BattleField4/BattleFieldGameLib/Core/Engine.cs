@@ -65,7 +65,7 @@
         private IUser user;
 
         /// <summary>
-        /// Holds a single instance of the Highscore class.
+        /// Holds a single instance of the High score class.
         /// </summary>
         private IScorer highscore;
 

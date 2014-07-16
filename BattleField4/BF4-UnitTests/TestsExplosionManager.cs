@@ -1,22 +1,29 @@
 ﻿namespace BF4_UnitTests
 {
-    using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;    
     using BattleFieldGameLib.Core;
     using BattleFieldGameLib.GameObjects.Fields;
-    using BattleFieldGameLib.GameObjects.Mines;
-    using BattleFieldGameLib.Common;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    /// <summary>
+    /// 
+    /// </summary>
     [TestClass]
     public class TestsExplosionManager
     {
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
-        [ExpectedException (typeof (ArgumentNullException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void ExplosionConstructorShouldThrowExeptionOnNullGameFieldPassedAsArgument()
         {
             var em = new ExplosionHandler(null);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SetHitPositionShouldThrowExeptionOnNullPassed()
@@ -25,6 +32,9 @@
             explosionManager.SetHitPosition(null);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SetMineShouldThrowExeptionOnNullPassed()
@@ -44,11 +54,14 @@
         public void HandleExplosionShouldThrowExeptionOnRunningWithoutMinesCreated()
         {
             var explosionManager = new ExplosionHandler(new GameField(7));
+
             // No mines added
             explosionManager.HandleExplosion();
-
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         public void CreatingShouldSetTheFiledBlastRepresentationToTheDefaultConstantValue()
         {
@@ -56,15 +69,18 @@
             Assert.AreEqual('X', explosionManager.FieldBlastRepresentation);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         public void HandleExplosionShouldReturnCorrectResultOfDestroyedMines()
         {
-            //var explosionManager = new ExplosionHandler(new GameField(7));
-            //explosionManager.SetMine(new NuclearMine());
+            // var explosionManager = new ExplosionHandler(new GameField(7));
+            // explosionManager.SetMine(new NuclearMine());
 
-            //explosionManager.SetHitPosition(new Position(3, 3));
-            //int result = explosionManager.HandleExplosion();
-            //Assert.IsTrue(result == 0);
+            // explosionManager.SetHitPosition(new Position(3, 3));
+            // int result = explosionManager.HandleExplosion();
+            // Assert.IsTrue(result == 0);
         }
     }
 }

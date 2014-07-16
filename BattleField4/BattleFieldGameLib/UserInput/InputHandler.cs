@@ -8,12 +8,7 @@
     /// Main class that will deal with input methods and messages. Implements IInputable interface. Strategy.
     /// </summary>
     public class InputHandler : IInputHandler
-    {
-        /// <summary>
-        /// Sets the default menu choice.
-        /// </summary>
-        private const int DefaultMenuChoice = 1;
-
+    {       
         /// <summary>
         /// Sets the minimum field size.
         /// </summary>
@@ -25,6 +20,11 @@
         public const int MaxFieldSize = 10;
 
         /// <summary>
+        /// Sets the default menu choice.
+        /// </summary>
+        private const int DefaultMenuChoice = 1;
+
+        /// <summary>
         /// Holds the instance of the IDrawer interface that is used to write/draw/show the information.
         /// </summary>
         private readonly IDrawer drawer;
@@ -32,7 +32,7 @@
         /// <summary>
         /// Holds the instance of the IInputable interface that is used to red/get the information from the user.
         /// </summary>
-        private readonly IInputable inputer;
+        private readonly IInputable inputer;        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InputHandler" /> class. 
@@ -99,15 +99,23 @@
             user.FieldSize = this.GetFieldSize();
 
             return user;
-        }
+        }       
 
         /// <summary>
-        /// Asks the user for his username. Used for High score.
+        /// Asks the user for the field size he wants to play.
         /// </summary>
-        /// <returns>String player's username.</returns>
-        private string GetUsername()
+        /// <returns>Integer for the field size.</returns>
+        public int GetFieldSize()
         {
-            return this.inputer.GetUsername();
+            int fieldSize = this.inputer.GetFieldSize();
+
+            while (!(MinFieldSize < fieldSize && fieldSize < MaxFieldSize))
+            {
+                this.drawer.DrawText("You have entered an invalid field size. Must be between [7, 9] ");
+                fieldSize = this.inputer.GetFieldSize();
+            }
+
+            return fieldSize;
         }
 
         /// <summary>
@@ -154,20 +162,12 @@
         }
 
         /// <summary>
-        /// Asks the user for the field size he wants to play.
+        /// Asks the user for his username. Used for High score.
         /// </summary>
-        /// <returns>Integer for the field size.</returns>
-        public int GetFieldSize()
+        /// <returns>String player's username.</returns>
+        private string GetUsername()
         {
-            int fieldSize = this.inputer.GetFieldSize();
-
-            while (!(MinFieldSize < fieldSize && fieldSize < MaxFieldSize))
-            {
-                this.drawer.DrawText("You have entered an invalid field size. Must be between [7, 9] ");
-                fieldSize = this.inputer.GetFieldSize();
-            }
-
-            return fieldSize;
-        }
+            return this.inputer.GetUsername();
+        }        
     }
 }

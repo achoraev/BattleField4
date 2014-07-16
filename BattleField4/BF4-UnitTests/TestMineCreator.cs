@@ -1,15 +1,21 @@
 ﻿namespace BF4_UnitTests
 {
     using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using BattleFieldGameLib.Core;
     using BattleFieldGameLib.Enums;
     using BattleFieldGameLib.GameObjects.Mines;
     using BattleFieldGameLib.Interfaces;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;    
 
+    /// <summary>
+    /// 
+    /// </summary>
     [TestClass]
     public class TestMineCreator
     {
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         public void CreateMineShouldReturnProperMines()
         {
@@ -21,6 +27,9 @@
             Assert.IsTrue(isLumpet && isNuclear);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void CreateMineWithInvaludPowerShouldThrowExeption() 

@@ -1,17 +1,20 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BattleFieldGameLib.UserInput;
-using BattleFieldGameLib.Common;
-using BattleFieldGameLib.Interfaces;
-using BattleFieldGameLib.Renderer;
-
-namespace BF4_UnitTests
+﻿namespace BF4_UnitTests
 {
-    class FakeReader : IInputable
+    using System;
+    using BattleFieldGameLib.Common;
+    using BattleFieldGameLib.Interfaces;
+    using BattleFieldGameLib.Renderer;
+    using BattleFieldGameLib.UserInput;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    
+    public class FakeReader : IInputable
     {
         public int Fieldsize { get; set; }
+
         public IPosition Position { get; set; }
+
         public int MenuChoise { get; set; }
+
         public string UserName { get; set; }
 
         public int GetFieldSize()
@@ -25,6 +28,7 @@ namespace BF4_UnitTests
             {
                 this.Fieldsize--;
             }
+
             return result;
         }
 
@@ -47,8 +51,7 @@ namespace BF4_UnitTests
     [TestClass]
     public class TestsInputHandler
     {
-        //Fieldsize method tests
-
+        // Fieldsize method tests
         [TestMethod]
         public void SuccessfulPassAtATrivialCaseOfGetFieldSize()
         {
@@ -73,7 +76,6 @@ namespace BF4_UnitTests
             Assert.AreEqual(result, InputHandler.MinFieldSize + 1);
         }
 
-
         [TestMethod]
         public void SuccessfulPassAtFieldSizeBelow40OfGetFieldSize()
         {
@@ -86,8 +88,7 @@ namespace BF4_UnitTests
             Assert.AreEqual(result, InputHandler.MaxFieldSize - 1);
         }
 
-        //Position method tests
-
+        // Position method tests
         [TestMethod]
         public void TestingCorrectPositionReturn()
         {
