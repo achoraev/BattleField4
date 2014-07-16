@@ -7,7 +7,7 @@
     using BattleFieldGameLib.Interfaces;
 
     /// <summary>
-    /// Flyweight and Factory design patterns for the MineCreator. Inherits MineFactory.
+    /// Flyweight pattern for the MineCreator. Inherits MineFactory.
     /// </summary>
     public class MineCreator : MineFactory
     {
