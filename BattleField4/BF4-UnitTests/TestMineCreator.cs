@@ -8,13 +8,13 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;    
 
     /// <summary>
-    /// 
+    /// Tests Mine creator class.
     /// </summary>
     [TestClass]
     public class TestMineCreator
     {
         /// <summary>
-        /// 
+        /// Test Mine creator.
         /// </summary>
         [TestMethod]
         public void CreateMineShouldReturnProperMines()
@@ -28,7 +28,7 @@
         }
 
         /// <summary>
-        /// 
+        /// Tests exceptions in creating Mines.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]

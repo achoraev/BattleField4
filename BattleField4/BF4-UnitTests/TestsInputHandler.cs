@@ -7,16 +7,35 @@
     using BattleFieldGameLib.UserInput;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     
+    /// <summary>
+    /// 
+    /// </summary>
     public class FakeReader : IInputable
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public int Fieldsize { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public IPosition Position { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public int MenuChoise { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string UserName { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public int GetFieldSize()
         {
             var result = this.Fieldsize;
@@ -32,26 +51,44 @@
             return result;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IPosition GetPositon()
         {
             return this.Position;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public string GetUsername()
         {
             return this.UserName;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public int GetMenuChoice()
         {
             return this.MenuChoise;
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     [TestClass]
     public class TestsInputHandler
-    {
+    {        
         // Fieldsize method tests
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         public void SuccessfulPassAtATrivialCaseOfGetFieldSize()
         {
@@ -64,6 +101,9 @@
             Assert.AreEqual(result, 8);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         public void SuccessfulPassAtFieldSizeAbove6OfGetFieldSize()
         {
@@ -76,6 +116,9 @@
             Assert.AreEqual(result, InputHandler.MinFieldSize + 1);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         public void SuccessfulPassAtFieldSizeBelow40OfGetFieldSize()
         {
@@ -89,6 +132,9 @@
         }
 
         // Position method tests
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         public void TestingCorrectPositionReturn()
         {

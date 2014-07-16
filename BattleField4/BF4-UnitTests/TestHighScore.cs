@@ -2,39 +2,31 @@
 {
     using System;
     using BattleFieldGameLib.Plugins;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;    
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    /// <summary>
+    /// Tests class HighScore.
+    /// </summary>
     [TestClass]
     public class TestHighScore
     {
-        //[TestMethod]
-        //public void TestAddHighScore()
-        //{
-        //    var scoreForAdd = new HighScore("angel", 50);
-        //    Assert.AreEqual(50, scoreForAdd.Score);
-        //    for (int i = 0; i < 10; i++)
-        //    {
-        //        scoreForAdd = new HighScore("angel" + i, i * 50);
-        //        scoreForAdd.AddHighScore();                
-        //    }
-            
-        //    Assert.AreEqual(450, scoreForAdd.Score);
-        //}
+        /// <summary>
+        /// Tests Add method and GetHighScore.
+        /// </summary>
+        [TestMethod]
+        public void TestAddHighScoreAndGetHighScore()
+        {
+            var scoreForAdd = new HighScore();            
+            scoreForAdd.Add("angel", 50);
 
-        //[TestMethod]
-        //public void TestGetHighScore()
-        //{
-        //    var scoreForAdd = new HighScore("angel", 50);
-        //    var sortedDictionary = scoreForAdd.GetHighScore("..//highscores.txt");
-        //    Assert.AreEqual(50, scoreForAdd.Score);
-        //    Assert.AreEqual(10, sortedDictionary.Count);
-        //}
+            Assert.AreEqual(1, scoreForAdd.GetHighScore().Count);
+        }
 
-        //[TestMethod]
-        //[ExpectedException(typeof(ArgumentNullException))]
-        //public void InvalidNamePassedSHouldThrowException()
-        //{
+        // [TestMethod]
+        // [ExpectedException(typeof(ArgumentNullException))]
+        // public void InvalidNamePassedSHouldThrowException()
+        // {
         //    var scoreForAdd = new HighScore(null, 50);
-        //}
+        // }
     }
 }

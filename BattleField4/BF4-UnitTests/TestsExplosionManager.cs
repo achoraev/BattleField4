@@ -6,13 +6,13 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
-    /// 
+    /// Test ExplosionManager class.
     /// </summary>
     [TestClass]
     public class TestsExplosionManager
     {
         /// <summary>
-        /// 
+        /// Test exceptions in ExplosionHandler.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
@@ -22,7 +22,7 @@
         }
 
         /// <summary>
-        /// 
+        /// Tests exceptions in SetHitPosition.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
@@ -33,7 +33,7 @@
         }
 
         /// <summary>
-        /// 
+        /// Tests exceptions in SetMine.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
@@ -43,12 +43,18 @@
             explosionManager.SetMine(null);
         }
 
+        /// <summary>
+        /// Tests create field.
+        /// </summary>
         [TestMethod]
         public void ExplosionHandlerShouldCreateWithoutErrors()
         {
             var explosionManager = new ExplosionHandler(new GameField(7));
         }
 
+        /// <summary>
+        /// Tests exceptions in HandleExplosion.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void HandleExplosionShouldThrowExeptionOnRunningWithoutMinesCreated()
@@ -60,7 +66,7 @@
         }
 
         /// <summary>
-        /// 
+        /// Test FieldBlastRepresentation == X.
         /// </summary>
         [TestMethod]
         public void CreatingShouldSetTheFiledBlastRepresentationToTheDefaultConstantValue()
