@@ -24,7 +24,7 @@
 
         // [TestMethod]
         // [ExpectedException(typeof(ArgumentNullException))]
-        // public void InvalidNamePassedSHouldThrowException()
+        // public void InvalidNamePassedShouldThrowException()
         // {
         //    var scoreForAdd = new HighScore(null, 50);
         // }
