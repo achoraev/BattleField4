@@ -174,20 +174,6 @@
             Assert.IsTrue(result.PosX == 1 && result.PosY == 1);
         }
 
-        //GetMenuChoice method tests.
-        /// <summary>
-        /// Testing GetMenuChoice method with currentChoice equal to two.
-        /// </summary>
-        [TestMethod]
-        public void TestIsValidMenuChoice()
-        {
-            IDrawer drawer = new ConsoleRenderer();
-            FakeReader reader = new FakeReader();
-            reader.Fieldsize = 8;
-            var inputHandler = new InputHandler(drawer, reader);
-
-            var result = inputHandler.GetMenuChoice();
-            Assert.AreEqual(result, 1);
-        }
+        //TODO MenuChoice
     }
 }
