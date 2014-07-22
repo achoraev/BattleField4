@@ -1,4 +1,4 @@
-﻿namespace BF4UnitTests
+﻿namespace BF4_UnitTests
 {
     using System;
     using BattleFieldGameLib.Plugins;
