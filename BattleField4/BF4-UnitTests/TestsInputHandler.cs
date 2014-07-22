@@ -18,7 +18,6 @@
         /// <summary>
         /// Testing GetFieldSize method with fieldsize equal to eight.
         /// </summary>
-
         [TestMethod]
         public void SuccessfulPassAtATrivialCaseOfGetFieldSize()
         {
@@ -98,6 +97,57 @@
             Assert.IsTrue(result.PosX == 1 && result.PosY == 1);
         }
 
-        //TODO: MenuCoice Tests
+        //MenuCoice Tests
+        /// <summary>
+        /// Testing GetMenuChoice with a correct value passed.
+        /// </summary>
+        [TestMethod]
+        public void TestingCorrectMenuChoise()
+        {
+            IDrawer drawer = new ConsoleRenderer();
+            var fakeReader = new Mock<IInputable>();
+            int value = 3;
+            fakeReader.Setup(x => x.GetMenuChoice())
+                .Returns(() => value)
+                .Callback(() => value = -1);
+            var inputHandler = new InputHandler(drawer, fakeReader.Object);
+
+            var result = inputHandler.GetMenuChoice();
+            Assert.AreEqual(result, 3);
+        }
+
+        /// <summary>
+        /// Testing GetMenuChoice with a its deffault value passed.
+        /// </summary>
+        [TestMethod]
+        public void TestingDefaultMenuChoise()
+        {
+            IDrawer drawer = new ConsoleRenderer();
+            var fakeReader = new Mock<IInputable>();
+            fakeReader.Setup(x => x.GetMenuChoice())
+                .Returns(-1);
+            var inputHandler = new InputHandler(drawer, fakeReader.Object);
+
+            var result = inputHandler.GetMenuChoice();
+            Assert.AreEqual(result, 1);
+        }
+
+        /// <summary>
+        /// Testing HandleUserInput with a correct value passed.
+        /// </summary>
+        [TestMethod]
+        public void TestHandleInput()
+        {
+            IDrawer drawer = new ConsoleRenderer();
+            var fakeReader = new Mock<IInputable>();
+            fakeReader.Setup(x => x.GetUsername())
+                .Returns("Ivan");
+            fakeReader.Setup(x => x.GetFieldSize())
+                .Returns(InputHandler.MaxFieldSize - 1);
+            var inputHandler = new InputHandler(drawer, fakeReader.Object);
+
+            var user = inputHandler.HandleUserInput();
+            Assert.IsTrue(user.Username == "Ivan" && user.FieldSize == InputHandler.MaxFieldSize - 1);
+        }
     }
 }
