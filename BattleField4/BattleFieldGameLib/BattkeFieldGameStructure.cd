@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BattleFieldGameLib.Common.Position" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Position.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BattleFieldGameLib.Common.User" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAIAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\User.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BattleFieldGameLib.Core.Engine">
+    <Position X="16.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAQAIQAABQAABAACAASgjBAAgBABQQkAgAAEAQA=</HashCode>
+      <FileName>Core\Engine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleFieldGameLib.Core.ExplosionHandler" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAgAAAAAAAAAAAAAAAAACASAJEAAgCBACAAAAABAAA=</HashCode>
+      <FileName>Core\ExplosionManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.1" />
+  </Class>
+  <Class Name="BattleFieldGameLib.Core.MineCreator">
+    <Position X="10.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\MineCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleFieldGameLib.Core.MineFactory">
+    <Position X="10.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\MineFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BattleFieldGameLib.Entry">
+    <Position X="18" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Entry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleFieldGameLib.GameObjects.Fields.GameField" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAJCAAACAAAAAAIAAAQAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>GameObjects\Fields\GameField.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BattleFieldGameLib.GameObjects.Mines.FatherBomb">
+    <Position X="8" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Mines\FatherBomb.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleFieldGameLib.GameObjects.Mines.LandMine">
+    <Position X="10.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Mines\LandMine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleFieldGameLib.GameObjects.Mines.LimpetMine">
+    <Position X="1.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Mines\LimpetMine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleFieldGameLib.GameObjects.Mines.Mine">
+    <Position X="5.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAkAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Mines\Mine.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BattleFieldGameLib.GameObjects.Mines.NavelMine">
+    <Position X="3.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Mines\NavelMine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleFieldGameLib.GameObjects.Mines.NuclearMine">
+    <Position X="5.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Mines\NuclearMine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleFieldGameLib.Plugins.HighScore" BaseTypeListCollapsed="true">
+    <Position X="16.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAgAAAAAAAAAAAAAAAAAIAAAAACAAAAAAAAACABA=</HashCode>
+      <FileName>Plugins\HighScore.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BattleFieldGameLib.Renderer.ConsoleRenderer" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAABAAIA=</HashCode>
+      <FileName>Renderer\ConsoleRenderer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BattleFieldGameLib.UserInput.ConsoleInput" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAACAAAAAAAAAAAAAAAAAAkAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserInput\ConsoleInput.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BattleFieldGameLib.UserInput.InputHandler" BaseTypeListCollapsed="true">
+    <Position X="18" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AUAAACIAAAAAAAAEAAAQAAAAEQgQAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>UserInput\InputHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="BattleFieldGameLib.Interfaces.IDrawable">
+    <Position X="1" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IDrawable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BattleFieldGameLib.Interfaces.IDrawer">
+    <Position X="3" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAABAAIA=</HashCode>
+      <FileName>Interfaces\IDrawer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BattleFieldGameLib.Interfaces.IExplodable">
+    <Position X="4.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IExplodable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BattleFieldGameLib.Interfaces.IExplosionHandler">
+    <Position X="6.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAgAAAAAAAAAAAAAAAAAAAQAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IExplosionManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BattleFieldGameLib.Interfaces.IGameField">
+    <Position X="1" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IGameField.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BattleFieldGameLib.Interfaces.IInputable">
+    <Position X="8.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAACAAAAAAAAAAAAAAAAAAEAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IInputable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BattleFieldGameLib.Interfaces.IInputHandler">
+    <Position X="3" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACIAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IInputHandler.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BattleFieldGameLib.Interfaces.IMineFactory">
+    <Position X="4.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IMineFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BattleFieldGameLib.Interfaces.IPosition">
+    <Position X="6.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IPosition.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BattleFieldGameLib.Interfaces.IScorer">
+    <Position X="8.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IScorer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BattleFieldGameLib.Interfaces.IUser">
+    <Position X="1" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAIAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IUser.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="BattleFieldGameLib.Enums.MenuChoice">
+    <Position X="3.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAACAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Enums\MenuChoice.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BattleFieldGameLib.Enums.MinePower">
+    <Position X="7.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAEAAAAAAgAAAgAAIA=</HashCode>
+      <FileName>Enums\MinePower.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

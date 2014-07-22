@@ -1,10 +1,12 @@
 ﻿namespace BattleFieldGameLib
 {
     using BattleFieldGameLib.Core;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Entry Point Class. Creates an instance of the engine ant starts the game.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class Entry
     {
         /// <summary>
