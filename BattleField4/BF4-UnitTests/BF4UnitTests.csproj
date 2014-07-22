@@ -56,8 +56,10 @@
     <Compile Include="TestHighScore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestMineCreator.cs" />
+    <Compile Include="TestsEngine.cs" />
     <Compile Include="TestsExplosionManager.cs" />
     <Compile Include="TestsInputHandler.cs" />
+    <Compile Include="TestsMine.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BattleFieldGameLib\BattleFieldGameLib.csproj">

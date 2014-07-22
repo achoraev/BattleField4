@@ -131,7 +131,7 @@
             catch (InvalidOperationException ex)
             {
                 // TODO: Catch in the invoker, e.g. the Entry class, and print the errors
-                throw new InvalidOperationException(string.Format("Error starting the game! {0}"), ex);
+                throw new InvalidOperationException(string.Format("Error starting the game! {0}", ex));
             }
         }
 
