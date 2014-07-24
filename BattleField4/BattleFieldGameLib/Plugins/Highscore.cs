@@ -3,10 +3,11 @@ namespace BattleFieldGameLib.Plugins
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
     using BattleFieldGameLib.Interfaces;
-
+    
     /// <summary>
     /// High score class. Saves the top 10 players in a files. Uses Singleton and Facade patterns.
     /// </summary>
@@ -31,14 +32,6 @@ namespace BattleFieldGameLib.Plugins
             this.sortedDictionary = new Dictionary<string, int>();
         }
       
-        /// <summary>
-        /// Shows the high score to the UI.
-        /// </summary>
-        public void ShowHighScore()
-        {
-            // logic here
-        }
-
         /// <summary>
         /// Saves the high score to a file.
         /// </summary>
@@ -72,6 +65,7 @@ namespace BattleFieldGameLib.Plugins
         /// Clones the current high score dictionary (prototype design pattern).
         /// </summary>
         /// <returns>High score results.</returns>
+        [ExcludeFromCodeCoverage]
         public object Clone()
         {
             var highScoreResults = new Dictionary<string, int>();

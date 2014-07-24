@@ -5,7 +5,7 @@
     using BattleFieldGameLib.Enums;
     using BattleFieldGameLib.GameObjects.Mines;
     using BattleFieldGameLib.Interfaces;
-
+    
     /// <summary>
     /// Flyweight pattern for the MineCreator. Inherits MineFactory.
     /// </summary>

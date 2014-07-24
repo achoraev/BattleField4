@@ -1,6 +1,7 @@
 ﻿namespace BattleFieldGameLib.Core
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using BattleFieldGameLib.GameObjects.Fields;
     using BattleFieldGameLib.Interfaces;
 
@@ -49,6 +50,7 @@
         /// Gets or sets the current mine.
         /// </summary>
         /// <value>IExplodable mine.</value>
+        [ExcludeFromCodeCoverage]
         private IExplodable CurrentMine
         {
             get
@@ -73,6 +75,7 @@
         /// Gets or sets the current hit position coordinates.
         /// </summary>
         /// <value>An instance of IPosition.</value>
+        [ExcludeFromCodeCoverage]
         private IPosition CurrentPosition
         {
             get
@@ -97,6 +100,7 @@
         /// Gets or sets the game field to be used.
         /// </summary>
         /// <value>An instance of the IGameField.</value>
+        [ExcludeFromCodeCoverage]
         private IGameField GameField
         {
             get
@@ -194,6 +198,7 @@
         /// </summary>
         /// <param name="row">Row to be blasted.</param>
         /// <param name="col">The col of this row to be blasted.</param>
+        [ExcludeFromCodeCoverage]
         private void MarkFieldAsBlasted(int row, int col)
         {
             this.GameField[row, col] = this.FieldBlastRepresentation;
@@ -205,6 +210,7 @@
         /// <param name="row">Row to be checked.</param>
         /// <param name="col">Col to be checked.</param>
         /// <returns>Boolean mine or not.</returns>
+        [ExcludeFromCodeCoverage]
         private bool IsThereMineIn(int row, int col)
         {
             if ((this.gameField[row, col] != 0) && (this.gameField[row, col] != this.FieldBlastRepresentation))

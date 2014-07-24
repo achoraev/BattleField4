@@ -1,9 +1,10 @@
 ﻿namespace BattleFieldGameLib.GameObjects.Fields
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Text;
     using BattleFieldGameLib.Interfaces;
-
+    
     /// <summary>
     /// Game Field Class. Holds the information about the game field and mine positions. Implements IGameField, IDrawable.
     /// </summary>
@@ -46,6 +47,7 @@
         /// <param name="row">Row to change.</param>
         /// <param name="col">Column from that row to change.</param>
         /// <returns>Char at the given position.</returns>
+        [ExcludeFromCodeCoverage]
         public char this[int row, int col]
         {
             get
@@ -65,6 +67,7 @@
         /// Method that gets the field information, adds additional headers.
         /// </summary>
         /// <returns>String to be passed to the drawer.</returns>
+        [ExcludeFromCodeCoverage]
         public string BitMap()
         {
             StringBuilder bodyToDraw = new StringBuilder();
@@ -95,6 +98,7 @@
         /// </summary>
         /// <param name="row">Row or X coordinate of the game field.</param>
         /// <param name="col">Col or Y coordinate of the game field.</param>
+        [ExcludeFromCodeCoverage]
         private void ValidateIndex(int row, int col)
         {
             if (row < 0 || row > this.FieldSize ||
@@ -109,6 +113,7 @@
         /// </summary>
         /// <param name="rowNumber">Row to get information from.</param>
         /// <returns>Returns hole row information as string.</returns>
+        [ExcludeFromCodeCoverage]
         private string GetRowInformation(int rowNumber)
         {
             var result = new StringBuilder();

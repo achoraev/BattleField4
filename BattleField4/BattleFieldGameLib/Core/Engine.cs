@@ -1,6 +1,7 @@
 ﻿namespace BattleFieldGameLib.Core
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using BattleFieldGameLib.Common;
     using BattleFieldGameLib.Enums;
     using BattleFieldGameLib.GameObjects.Fields;
@@ -138,6 +139,7 @@
         /// <summary>
         /// Gets the high score and prints it to the console.
         /// </summary>
+        [ExcludeFromCodeCoverage]
         private void PrintHighsores()
         {
             this.consoleDrawer.Clear();
@@ -161,6 +163,7 @@
         /// <summary>
         /// Displays a short message for the user before ending the game.
         /// </summary>
+        [ExcludeFromCodeCoverage]
         private void GoodBye()
         {
             this.consoleDrawer.Clear();
@@ -170,6 +173,7 @@
         /// <summary>
         /// Gets the user information. Username and Field size.
         /// </summary>
+        [ExcludeFromCodeCoverage]
         private void GetUserInfo()
         {
             this.consoleDrawer.Clear();
@@ -179,6 +183,7 @@
         /// <summary>
         /// Initializes the game field and the explosion handler. If any errors occur an exception will be thrown.
         /// </summary>
+        [ExcludeFromCodeCoverage]
         private void Initialize()
         {
             try
@@ -196,6 +201,7 @@
         /// Checks if the position entered by the user is valid and within the field.
         /// </summary>
         /// <returns>Boolean valid or invalid position.</returns>
+        [ExcludeFromCodeCoverage]
         private bool IsValidPosition()
         {
             if ((0 <= this.user.LastInput.PosX && this.user.LastInput.PosX < this.user.FieldSize) &&
@@ -210,6 +216,7 @@
         /// <summary>
         /// The main game cycle.
         /// </summary>
+        [ExcludeFromCodeCoverage]
         private void GameOn()
         {
             int minesOnFieldCount = this.PopulateField();
@@ -256,6 +263,7 @@
         /// Populates the game field with mines.
         /// </summary>
         /// <returns>The number of mines that are created.</returns>
+        [ExcludeFromCodeCoverage]
         private int PopulateField()
         {
             int fieldSize = this.user.FieldSize;
@@ -281,6 +289,7 @@
         /// <summary>
         /// Show's the coordinates of the last hit the player has made.
         /// </summary>
+        [ExcludeFromCodeCoverage]
         private void ShowLastHit()
         {
             if (this.user.LastInput != null)
@@ -296,6 +305,7 @@
         /// <summary>
         /// Asks the player for the next hit coordinates.
         /// </summary>
+        [ExcludeFromCodeCoverage]
         private void AskForPosition()
         {
             this.consoleDrawer.DrawText("Please enter valid coordinates to hit: ");
@@ -305,6 +315,7 @@
         /// Checks if on the given coordinates a mine has been hit.
         /// </summary>
         /// <returns>Boolean hit or not.</returns>
+        [ExcludeFromCodeCoverage]
         private bool IsMineHit()
         {
             char fieldHit = this.gameField[this.user.LastInput.PosX, this.user.LastInput.PosY];
@@ -320,6 +331,7 @@
         /// <summary>
         /// This method is called when the game is over. Shows the player current score and all time high score.
         /// </summary>
+        [ExcludeFromCodeCoverage]
         private void GameOver()
         {
             this.highscore.Add(this.user.Username, this.finalScore);

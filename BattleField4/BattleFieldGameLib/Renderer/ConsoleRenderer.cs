@@ -1,11 +1,13 @@
 ﻿namespace BattleFieldGameLib.Renderer
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using BattleFieldGameLib.Interfaces;
 
     /// <summary>
     /// Main class for drawing to the console. Implements IDrawer interface. Any IDrawer object will work with the program. Strategy.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class ConsoleRenderer : IDrawer
     {
         /// <summary>

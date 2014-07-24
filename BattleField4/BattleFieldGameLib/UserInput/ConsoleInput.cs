@@ -1,12 +1,14 @@
 ﻿namespace BattleFieldGameLib.UserInput
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using BattleFieldGameLib.Common;
     using BattleFieldGameLib.Interfaces;
 
     /// <summary>
     /// Class that reads information from the console. Implements IInputable. The program will work with any instance of IInputable - Strategy.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class ConsoleInput : IInputable
     {
         /// <summary>

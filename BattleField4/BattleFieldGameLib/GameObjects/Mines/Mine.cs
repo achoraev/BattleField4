@@ -1,12 +1,14 @@
 ﻿namespace BattleFieldGameLib.GameObjects.Mines
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using BattleFieldGameLib.Enums;
     using BattleFieldGameLib.Interfaces;
     
     /// <summary>
     /// Mines base class. All mines inherit this class.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public abstract class Mine : IExplodable
     {
         /// <summary>
